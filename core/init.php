@@ -9,8 +9,6 @@ define('LAYOUT_PATH', APP_PATH . 'views/layout/');
 /* Require config file for database connection */
 require_once APP_PATH . 'config/config.php';
 
-require_once APP_PATH . 'libs/Gaurd.php';
-
 /* Require core files */
 require_once APP_PATH . 'libs/App.php';
 require_once APP_PATH . 'libs/Parameters.php';
