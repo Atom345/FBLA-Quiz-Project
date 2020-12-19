@@ -24,8 +24,6 @@ class App{
 		/* Handle the controller */
 		Routing::parse_controller();
 
-		Gaurd\Gaurd::protect();
-		
 		/* Get the correct controller based on URL/method */
 		$controller = Routing::get_controller(Routing::$controller, Routing::$path);
 
