@@ -7,7 +7,12 @@ define('ASSETS_PATH', APP_PATH . 'views/assets/');
 define('LAYOUT_PATH', APP_PATH . 'views/layout/');
 
 /* Require config file for database connection */
-require_once APP_PATH . 'config/config.php';
+if(file_exists(APP_PATH . 'config/config.php')){
+    require_once APP_PATH . 'config/config.php';
+}else{
+    header("Location: ../install/install.php");
+}
+
 
 /* Require core files */
 require_once APP_PATH . 'libs/App.php';
