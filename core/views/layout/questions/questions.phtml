@@ -1,0 +1,34 @@
+<div class = "container">
+
+<div class = "row">
+    <div class = "col-md-12">
+
+<form method = "post">
+
+<!-- First Question -->
+<div class = "card ml-auto" style = "margin:50px">
+<div class = "card-header">
+    <h3 class = "card-title"><?php echo $data->radio_data['question_ask'] ?></h3>
+</div>
+<div class = "card-body">
+        <p>Choose the correct option.</p>
+        <?php echo $data->radio_data['question_content'] ?>
+</div>
+</div>
+
+<!--Second Question -->
+<div class = "card ml-auto" style = "margin:50px">
+<div class = "card-header">
+    <h3 class = "card-title"><?php echo $data->blank_data['question_ask'] ?></h3>
+</div>
+<div class = "card-body">
+        <p>Fill in the blank.</p>
+        <?php echo $data->blank_data['question_content'] ?>
+</div>
+</div>
+
+</form>
+
+</div>
+</div>
+</div>

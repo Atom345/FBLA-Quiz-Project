@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>FBLA Quiz</title>
+  <meta name="author" content="Bryan Lawless">
+  <meta name="description" content="Take the quiz and find out how much you know about FBLA. The quiz is five questions long. You will also recieve a score at the end.">
+  <meta name="keywords" content="fbla,quiz,quizes">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alfa+Slab+One">
+  <link rel = "stylesheet" href = "<?php echo ASSETS_PATH . "css/bootstrap.min.css"?>">
+<style>
+::-webkit-scrollbar {
+    display: none !important;
+}
+
+body > div {
+    height: 100%;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
+*{
+
+font-family: 'Quicksand', sans-serif;
+
+}
+
+.ball {
+    position: absolute;
+    border-radius: 100%;
+    opacity: 0.7;
+    z-index: -1;
+}
+</style>
+  </head>
+
+  <body>
+
+   <?= $this->views['menu'] ?>
+   
+   <?= $this->views['content'] ?>
+   
+   <?= $this->views['footer'] ?>
+ 
+</body>
+<script>
+
+if ( window.history.replaceState ) {
+  window.history.replaceState( null, null, window.location.href );
+}
+
+<?php if(\FBLA\Routing\Routing::$controller_key !== 'reward'){ ?>
+// Some random colors
+const colors = ["rgb(223,74,64)", "rgb(64,147,223)", "#1B1B1B"];
+
+const numBalls = 50;
+const balls = [];
+
+for (let i = 0; i < numBalls; i++) {
+  let ball = document.createElement("div");
+  ball.classList.add("ball");
+  ball.style.background = colors[Math.floor(Math.random() * colors.length)];
+  ball.style.left = `${Math.floor(Math.random() * 100)}vw`;
+  ball.style.top = `${Math.floor(Math.random() * 100)}vh`;
+  ball.style.transform = `scale(${Math.random()})`;
+  ball.style.width = `${Math.random()}em`;
+  ball.style.height = ball.style.width;
+  
+  balls.push(ball);
+  document.body.append(ball);
+}
+
+// Keyframes
+balls.forEach((el, i, ra) => {
+  let to = {
+    x: Math.random() * (i % 2 === 0 ? -11 : 11),
+    y: Math.random() * 12
+  };
+
+  let anim = el.animate(
+    [
+      { transform: "translate(0, 0)" },
+      { transform: `translate(${to.x}rem, ${to.y}rem)` }
+    ],
+    {
+      duration: (Math.random() + 1) * 2000, // random duration
+      direction: "alternate",
+      fill: "both",
+      iterations: Infinity,
+      easing: "ease-in-out"
+    }
+  );
+});
+<?php } ?>
+</script>  
+</html>

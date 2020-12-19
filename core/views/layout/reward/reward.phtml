@@ -1,0 +1,28 @@
+<div class = "container">
+<div class = "row">
+<div class = "col-md-8 offset-2">
+<div class = "card text-center" style = "margin:20px">
+<div class = "card-header">
+<div class = "card-title">Congratulations!</div>
+</div>
+<div class = "card-body">
+<img class = "m-5" src = "<?php echo ASSETS_PATH . 'img/fbla-logo.png' ?>">
+<h4>This certificate signifies the completion of the <b>FBLA Quiz</b></h4>
+</div>
+<div class = "card-text m-3">
+Congratulations on completing the FBLA quiz! Feel free to take the quiz again improve your speed or score.
+</div>
+<p>Score: <b>1/5<b></p>
+<div class = "card-footer">
+    Completed on: <div id = "time_completed"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+var time = new Date();
+var date = time.getFullYear()+'-'+(time.getMonth()+1)+'-'+time.getDate();
+
+document.getElementById("time_completed").innerHTML = date;
+</script>
