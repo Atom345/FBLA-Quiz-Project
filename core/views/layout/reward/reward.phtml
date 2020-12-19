@@ -1,9 +1,22 @@
 <div class = "container">
 <div class = "row">
 <div class = "col-md-8 offset-2">
+<div class = "card" style = "margin:20px">
+    <div class = "card-body">
+    <div class = "row">
+    <div class = "col-md-9">
+        <h4 class = "m-2">Print your certificate</h4>
+    </div>
+    <div class = "col-md-3">
+        <button class = "btn btn-primary btn-lg float-right" onclick="printDiv('certificate')">Print</button>
+    </div>
+    </div>
+    </div>
+</div>
+<div id = "certificate">
 <div class = "card text-center" style = "margin:20px">
 <div class = "card-header">
-<div class = "card-title">Congratulations!</div>
+<div class = "card-title"><h4>Congratulations!</h4></div>
 </div>
 <div class = "card-body">
 <img class = "m-5" src = "<?php echo ASSETS_PATH . 'img/fbla-logo.png' ?>">
@@ -20,9 +33,18 @@ Congratulations on completing the FBLA quiz! Feel free to take the quiz again im
 </div>
 </div>
 </div>
+</div>
 <script>
 var time = new Date();
 var date = time.getFullYear()+'-'+(time.getMonth()+1)+'-'+time.getDate();
 
 document.getElementById("time_completed").innerHTML = date;
+
+function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        w=window.open();
+        w.document.write(printContents);
+        w.print();
+        w.close();
+}
 </script>
