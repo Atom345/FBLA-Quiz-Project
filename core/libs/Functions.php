@@ -20,7 +20,7 @@ function get_correct_answer_from_question($question_id){
     $result = $stmt->get_result();
 
     while($row = $result->fetch_assoc()) {
-        return $row;
+        return $row['correct_value'];
     }
 }
 
