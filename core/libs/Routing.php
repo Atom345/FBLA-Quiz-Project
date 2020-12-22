@@ -51,8 +51,12 @@ class Routing {
                 'controller' => 'Reward'
             ],
 
-            'notfound' => [
-                'controller' => 'NotFound'
+            'login' => [
+                'controller' => 'Login'
+            ],
+
+            'register' => [
+                'controller' => 'Register'
             ],
 
         ]

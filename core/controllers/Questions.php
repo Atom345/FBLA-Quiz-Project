@@ -5,16 +5,17 @@ namespace FBLA\Controllers;
 class Questions extends Controller{
 
     public function index(){
+      
+            $radio = get_random_question_type('radio');
+            $blank = get_random_question_type('blank');
 
-        /* Get random questions */
-        $radio = get_random_question_type('radio');
-        $blank = get_random_question_type('blank');
+            setcookie('radio', json_encode($radio), time()+3600);
+            setcookie('blank', json_encode($blank), time()+3600);
+
 
         if(isset($_POST['fill_blank']) and isset($_POST['submit_quiz'])){
            $radio_answer = get_correct_answer_from_question($radio['question_id']);
-           $blank_answer = get_correct_answer_from_question($blank['question_id']); 
-
-            die(var_dump($radio_answer));
+           $blank_answer = get_correct_answer_from_question($blank['question_id']);
 
            switch($radio_answer){
             case $_POST['radio_group']:
