@@ -14,9 +14,23 @@ class Questions extends Controller{
            $radio_answer = get_correct_answer_from_question($radio['question_id']);
            $blank_answer = get_correct_answer_from_question($blank['question_id']); 
 
-            if($blank_answer == $_POST['fill_blank']){
-                die("Correct!");
-            }
+            die(var_dump($radio_answer));
+
+           switch($radio_answer){
+            case $_POST['radio_group']:
+                echo "Correct!";
+            break;
+            default:
+                echo "Incorrect!";
+           }
+
+           switch($blank_answer){
+            case $_POST['fill_blank']:
+                echo "Correct!";
+            break;
+            default:
+                echo "Incorrect!";
+           }
         }
 
 
