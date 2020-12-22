@@ -6,6 +6,9 @@ My project for the annual FBLA contest. (Coding and Programming)
 - Git
 - Xxamp
 - PHPmyAdmin
+- Bootstrap
+- jQuery
+- Github
 
 **Languages:**
 - PHP
