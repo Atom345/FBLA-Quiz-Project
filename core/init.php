@@ -13,6 +13,9 @@ if(file_exists(APP_PATH . 'config/config.php')){
     header("Location: ../install/install.php");
 }
 
+define('COOKIE_PATH', preg_replace('|https?://[^/]+|i', '', SITE_URL));
+session_set_cookie_params(null, COOKIE_PATH);
+session_start();
 
 /* Require core files */
 require_once APP_PATH . 'libs/App.php';
