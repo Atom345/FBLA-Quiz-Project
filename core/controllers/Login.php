@@ -33,7 +33,7 @@ class Login extends Controller{
                     redirect('login');
                 }
             }else{
-                error();
+              $_SESSION['error'][] = "Please check your login details.";
             }
 
         }
