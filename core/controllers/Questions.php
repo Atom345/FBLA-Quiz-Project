@@ -5,39 +5,28 @@ namespace FBLA\Controllers;
 class Questions extends Controller{
 
     public function index(){
-      
-            $radio = get_random_question_type('radio');
-            $blank = get_random_question_type('blank');
+        
+        if(user_has_unfinished_quiz('0') == true){
 
-            setcookie('radio', json_encode($radio), time()+3600);
-            setcookie('blank', json_encode($blank), time()+3600);
+            $user_quiz = get_user_quiz_data('0');
 
+            $questions = generate_questions($user_quiz['quiz_random_questions']);
 
-        if(isset($_POST['fill_blank']) and isset($_POST['submit_quiz'])){
-           $radio_answer = get_correct_answer_from_question($radio['question_id']);
-           $blank_answer = get_correct_answer_from_question($blank['question_id']);
-
-           switch($radio_answer){
-            case $_POST['radio_group']:
-                echo "Correct!";
-            break;
-            default:
-                echo "Incorrect!";
-           }
-
-           switch($blank_answer){
-            case $_POST['fill_blank']:
-                echo "Correct!";
-            break;
-            default:
-                echo "Incorrect!";
-           }
+            $_SESSION['error'][] = "You have an unfinished quiz, please complete this one before starting a new one.";
+            
+        }
+        
+        if(isset($_POST['submit_quiz'])){
+            if(isset($_POST['radio_group'], $_POST['fill_blank'])){
+                //Something...
+            }else{
+                $_SESSION['error'][] = "Please fill in all the questions.";
+            }
         }
 
 
         $data = [
-            'radio_data' => $radio,
-            'blank_data' => $blank
+           'questions' => $questions
         ];
 
         $view = new \FBLA\Views\View('questions/questions', (array) $this);

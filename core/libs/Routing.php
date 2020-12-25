@@ -59,6 +59,10 @@ class Routing {
                 'controller' => 'Register'
             ],
 
+            'logout' => [
+                'controller' => 'Logout'
+            ],
+
         ]
     ];
 

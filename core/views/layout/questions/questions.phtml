@@ -1,36 +1,21 @@
+<?php notify() ?>
 <div class = "container">
-
-<div class = "row">
-    <div class = "col-md-12">
-
 <form method = "post">
+<div class = "row">
 
-<!-- First Question -->
-<div class = "card ml-auto" style = "margin:50px">
-<div class = "card-header">
-    <h3 class = "card-title"><?php echo $data->radio_data['question_ask'] ?></h3>
+<?php foreach($data->questions as $item) { ?>
+<div class = "col-md-12 m-2">
+   <div class = "card">
+        <div class = "card-header">
+            <div class = "card-title"><h4><?php echo $item['question_ask'] ?></h4></div>
+        </div>
+        <div class = "card-body">
+        <?php echo $item['question_content'] ?>
+        </div>
+   </div>
 </div>
-<div class = "card-body">
-        <p>Choose the correct option.</p>
-        <?php echo $data->radio_data['question_content'] ?>
-</div>
-</div>
-
-<!--Second Question -->
-<div class = "card ml-auto" style = "margin:50px">
-<div class = "card-header">
-    <h3 class = "card-title"><?php echo $data->blank_data['question_ask'] ?></h3>
-</div>
-<div class = "card-body">
-        <p>Fill in the blank.</p>
-        <?php echo $data->blank_data['question_content'] ?>
-</div>
-</div>
-
-<button type = "submit" name = "submit_quiz" class = "btn btn-primary">Submit Quiz</button>
-
+<?php } ?>
+<button class = "btn btn-primary m-3" type = "submit" name = "submit_quiz">Submit Quiz</button>
 </form>
-
-</div>
 </div>
 </div>
