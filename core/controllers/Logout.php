@@ -7,7 +7,7 @@ class Logout extends Controller{
     public function index(){
 
        setcookie('loggedin', null, '-1');
-       redirect('/');
+       redirect('');
 
     }
 

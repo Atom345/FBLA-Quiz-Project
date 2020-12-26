@@ -1,23 +1,10 @@
-<style>
-		.ball {
-		position: absolute;
-		border-radius: 100%;
-		opacity: 0.7;
-		z-index: -1;
-		}
-</style>
 <div class="card"></div>
     <div class="jumbotron text-center" style="padding: 45px;margin: 200px;border-radius:25px">
         <h2 data-aos="fade-down" data-aos-duration="900">Think you know a bunch about FBLA?</h2>
         <p class="lead text-break" data-aos="fade-down" data-aos-duration="900" data-aos-delay="800">Take the quiz and find out how much you know about FBLA. The quiz is five questions long. You will also recieve a score at the end.</p>
         <p>
         <form method = "post">
-		<button type = "submit" name = "start_quiz" class="btn btn-primary text-white border rounded border-white" role="button" data-aos="fade" data-aos-duration="950" data-aos-delay="1600" style="background-color: rgb(223,74,64);">Lets start!</button>
+		<a href = "<?php echo url('questions') ?>" class="btn btn-primary text-white border rounded border-white" role="button" data-aos="fade" data-aos-duration="950" data-aos-delay="1600" style="background-color: rgb(223,74,64);">Lets start!</a>
         </form>
         </p>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/bs-init.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
-    <script src="assets/js/theme.js"></script>

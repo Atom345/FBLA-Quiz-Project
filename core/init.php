@@ -6,6 +6,8 @@ define('APP_PATH', 'core/');
 define('ASSETS_PATH', APP_PATH . 'views/assets/');
 define('LAYOUT_PATH', APP_PATH . 'views/layout/');
 
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
 /* Require config file for database connection */
 if(file_exists(APP_PATH . 'config/config.php')){
     require_once APP_PATH . 'config/config.php';

@@ -63,6 +63,10 @@ class Routing {
                 'controller' => 'Logout'
             ],
 
+            'dashboard' => [
+                'controller' => 'Dashboard'
+            ],
+
         ]
     ];
 

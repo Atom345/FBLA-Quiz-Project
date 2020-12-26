@@ -28,7 +28,7 @@ class Login extends Controller{
             if(password_verify($password, $fetched_user['pass'])){
                 if(!isset($_SESSION['user_id'])){
                     $user_data = get_user_data_from_email($email);
-                    $token_code = md5($user_data['user_id'] . microtime());
+                    $token_code = master_key('encrypt', $user_data['email']);
                     setcookie('loggedin', $token_code, time()+60*60*24*30);
                     redirect('login');
                 }

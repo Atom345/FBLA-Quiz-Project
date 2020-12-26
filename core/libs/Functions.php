@@ -86,32 +86,61 @@ function get_user_quiz_data($user_id){
     while($row = $result->fetch_assoc()) {
         return $row;
     }
+
 }
 
-function generate_questions($payload){
+function send_questions($payload){
     $questions_seperated = explode(",", $payload);
 
-    $radio_sql = FBLA\Database\Database::$db->query('SELECT * FROM `questions` WHERE question_id="'. $questions_seperated[0] .'" order by RAND() LIMIT 1');
-
-    while($radio_row = $radio_sql->fetch_assoc()) {
-      $radio_payload = $radio_row;
-    }
-
-    $blank_sql = FBLA\Database\Database::$db->query('SELECT * FROM `questions` WHERE question_id="'. $questions_seperated[1] .'" order by RAND() LIMIT 1');
-
-    while($blank_row = $blank_sql->fetch_assoc()) {
-      $blank_payload = $blank_row;
-    }
-
-    $questions_json_payload = array(
-        'radio' => $radio_payload,
-        'blank' => $blank_payload
+    $questions_array = array(
+        $questions_seperated[0],
+        $questions_seperated[1],
+        $questions_seperated[2],
+        $questions_seperated[3],
+        $questions_seperated[4]
     );
 
-    return $questions_json_payload;
+    $in    = str_repeat('?,', count($questions_array) - 1) . '?';
+    $sql   = "SELECT * FROM questions WHERE question_id IN ($in)"; 
+    $stmt  = FBLA\Database\Database::$db->prepare($sql);
 
+    $types = str_repeat('s', count($questions_array));
+    $stmt->bind_param($types, ...$questions_array); 
 
-   
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $data = $result->fetch_all(MYSQLI_ASSOC);   
+    return $data;
+  
+}
+
+function generate_quiz_number_set(){
+    $numbers = range(1, 50);
+    shuffle($numbers);
+    $return_numbers = $numbers[0].','.$numbers[1].','.$numbers['2'].','.$numbers[3].','.$numbers[4];
+    return $return_numbers;
+}
+
+function master_key($action, $string) {
+
+    $output = false;
+
+    $encrypt_method = "AES-256-CBC";
+    $secret_key = "Cue77x81LwepWi3s";
+    $secret_iv = "TfG7qrqC6ZZqhKhC";
+
+    $key = hash('sha256', $secret_key);
+    
+    $iv = substr(hash('sha256', $secret_iv), 0, 16);
+
+    if ( $action == 'encrypt' ) {
+        $output = openssl_encrypt($string, $encrypt_method, $key, 0, $iv);
+        $output = base64_encode($output);
+    } else if( $action == 'decrypt' ) {
+        $output = openssl_decrypt(base64_decode($string), $encrypt_method, $key, 0, $iv);
+    }
+
+    return $output;
 }
 
 ?>

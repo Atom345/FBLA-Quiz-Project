@@ -1,0 +1,24 @@
+<?php notify() ?>
+<div class = "container">
+<div class="login-form">
+    <form method="post">
+        <h2 class="text-center">Create account</h2>   
+        <div class="form-group">
+            <input type="text" name = "name" class="form-control" placeholder="Full Name" required="required">
+        </div>    
+        <div class="form-group">
+            <input type="email" name = "email" class="form-control" placeholder="Email" required="required">
+        </div>
+        <div class="form-group">
+            <input type="password" name = "password" class="form-control" placeholder="Password" required="required">
+        </div>
+        <div class="form-group">
+            <input type="password" name = "repeat-password" class="form-control" placeholder="Repeat Password" required="required">
+        </div>
+        <div class="form-group">
+            <button type="submit" name = "register" class="btn btn-primary btn-block">Create account</button>
+        </div>  
+    </form>
+    <p class="text-center">Already have an account? <a href="<?php echo url('login') ?>">Login</a>.</p>
+</div>
+</div>
