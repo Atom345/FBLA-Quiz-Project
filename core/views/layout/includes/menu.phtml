@@ -12,17 +12,16 @@
                     <a class="nav-link ml-auto" href="<?php echo url('register') ?>">Register</a>
                 </li>
                 <?php }elseif(FBLA\Routing\Routing::$controller_key !== 'questions'){ ?>
-                    <div class="btn-group dropleft">
-                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class = "fas fa-compass"></i>
-                    </button>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="<?php echo url('questions') ?>"><i class = "fas fa-plus-circle"></i> New Quiz</a>
-                    <a class="dropdown-item" href="<?php echo url('dashboard') ?>"><i class = "fas fa-star"></i> See Quiz Scores</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="<?php echo url('logout') ?>"><i class = "fas fa-sign-out-alt"></i> Logout</a>
-                </div>
-                </div>
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                             <i class = "fas fa-compass"></i>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                    </div>
                 <?php } ?>
                 </ul>
             </div>

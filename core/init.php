@@ -27,6 +27,7 @@ require_once APP_PATH . 'libs/Database.php';
 require_once APP_PATH . 'libs/Functions.php';
 require_once APP_PATH . 'libs/Routing.php';
 require_once APP_PATH . 'libs/Title.php';
+require_once APP_PATH . 'libs/UserData.php';
 require_once APP_PATH . 'libs/View.php';
 
 require_once APP_PATH . 'libs/Notify.php';

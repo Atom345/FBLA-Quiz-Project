@@ -24,6 +24,8 @@ class App{
 		/* Handle the controller */
 		Routing::parse_controller();
 
+		$fetch_user_data_class = new UserData\UserData;
+
 		/* Get the correct controller based on URL/method */
 		$controller = Routing::get_controller(Routing::$controller, Routing::$path);
 

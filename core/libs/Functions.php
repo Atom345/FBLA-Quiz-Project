@@ -48,10 +48,6 @@ function url($path){
     return $url;
 }
 
-function get_user_data($id){
-
-}
-
 function is_logged_in(){
     if(isset($_COOKIE['loggedin'])){
         return true;
@@ -138,6 +134,9 @@ function master_key($action, $string) {
         $output = base64_encode($output);
     } else if( $action == 'decrypt' ) {
         $output = openssl_decrypt(base64_decode($string), $encrypt_method, $key, 0, $iv);
+        if(!$output){
+            return false;
+        }
     }
 
     return $output;

@@ -2,6 +2,8 @@
 
 namespace FBLA\Controllers;
 
+use \FBLA\UserData\UserData;
+
 class Dashboard extends Controller{
 
     public function index(){
@@ -10,8 +12,7 @@ class Dashboard extends Controller{
             redirect('');
         }
 
-        $fetched_email_from_cookie = master_key('decrypt', $_COOKIE['loggedin']);
-        $user_data = get_user_data_from_email($fetched_email_from_cookie);
+        $userdata = UserData::userdata();
 
         $data = [
             'user_data' => $user_data
