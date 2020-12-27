@@ -20,9 +20,10 @@ My project for the annual FBLA contest. (Coding and Programming)
 - JSON
 
 <h3>Things to be improved:</h3>
-1. Website Design
+
+1. Website Design ✅
 2. Overall Website security.
-3. Add more questions.
+3. Add more questions. ✅
 4. Add more sign-in options.
 5. Implement Google Recaptcha to prevent bot spam.
 
