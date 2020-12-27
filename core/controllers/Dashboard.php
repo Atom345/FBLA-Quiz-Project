@@ -8,14 +8,13 @@ class Dashboard extends Controller{
 
     public function index(){
 
+        /* Check if user is logged in */
         if(!isset($_COOKIE['loggedin'])){
             redirect('');
         }
 
-        $userdata = UserData::userdata();
-
         $data = [
-            'user_data' => $user_data
+
         ];
 
         $view = new \FBLA\Views\View('dashboard/dashboard', (array) $this);

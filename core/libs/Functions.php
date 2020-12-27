@@ -1,5 +1,7 @@
 <?php
 
+/* All functions used by the application */
+
 function get_random_question_type($question_type){
 
     $stmt = FBLA\Database\Database::$db->prepare('SELECT * FROM `questions` WHERE question_type=? order by RAND() LIMIT 1'); 
@@ -140,6 +142,27 @@ function master_key($action, $string) {
     }
 
     return $output;
+}
+
+function get_time($timezone = "MST"){
+    $tz_obj = new DateTimeZone($timezone);
+    $today = new DateTime("now", $tz_obj);
+    $today_formatted = $today->format('m-d-y');
+    
+    $date = new DateTime("now", new DateTimeZone($timezone));
+    return $date->format('Y-m-d H:i:s');	
+    
+}
+
+function get_five_recent_completed_quizes($user_id){
+    $stmt = FBLA\Database\Database::$db->prepare("SELECT * FROM `quiz_progress` WHERE user_id=? and finished='true' ORDER BY `quiz_timestamp` DESC LIMIT 5"); 
+    $stmt->bind_param("s", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    while($row = $result->fetch_assoc()) {
+        die(var_dump($row));
+    }
 }
 
 ?>

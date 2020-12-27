@@ -1,7 +1,14 @@
 <?php
 
+/* 
+
+This is the notification file. Its job is to display
+critical information, such as errors and warnings. 
+
+*/
+
 function notify() {
-    $types = ['error', 'success', 'info'];
+    $types = ['error', 'success', 'info']; //Types of notification messages.
 
     foreach($types as $type) {
         if(isset($_SESSION[$type]) && !empty($_SESSION[$type])) {
@@ -10,13 +17,14 @@ function notify() {
             foreach($_SESSION[$type] as $message) {
                 $csstype = ($type == 'error') ? 'error' : $type;
 
+                /* Output a Bootstrap alert. */
                 echo '
                 <div class="alert alert-warning show m-2" role="alert">
                 '.$message.'
                 </div>
 				';
             }
-           unset($_SESSION[$type]);
+           unset($_SESSION[$type]); //Unset the notification message, so it does not show up again.
         }
     }
 

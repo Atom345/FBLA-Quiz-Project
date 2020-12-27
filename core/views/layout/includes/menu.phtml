@@ -14,12 +14,12 @@
                 <?php }elseif(FBLA\Routing\Routing::$controller_key !== 'questions'){ ?>
                     <div class="dropdown">
                         <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                             <i class = "fas fa-compass"></i>
+                             <i class = "fas fa-compass"></i> <?php echo FBLA\UserData\UserData::userdata('name') ?>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <li><a class="dropdown-item" href="<?php echo url('questions') ?>"><i class = "fas fa-plus-circle"></i> New Quiz</a></li>
+                        <li><a class="dropdown-item" href="<?php echo url('dashboard') ?>"><i class = "fas fa-columns"></i> Dashboard</a></li>
+                        <li><a class="dropdown-item" href="<?php echo url('Logout') ?>"><i class = "fas fa-sign-out-alt"></i> Logout</a></li>
                     </ul>
                     </div>
                 <?php } ?>
