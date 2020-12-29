@@ -9,13 +9,30 @@
         <div class = "card-header">
             <div class = "card-title"><h4><?php echo $item['question_ask'] ?></h4></div>
         </div>
+        <?php if($data->quiz_complete !== true){ ?>
+
         <div class = "card-body">
         <?php echo $item['question_content'] ?>
         </div>
+
+        <?php } ?>
+        <?php if($data->quiz_complete !== true){ ?>
+
+        <div class = "card-footer border-0">
+        <div class="alert alert-default" role="alert">
+           <i class = "fas fa-question-circle"></i> <b>Hint:</b> <?php echo $item['question_hint'] ?>
+        </div>
+        </div>
+
+        <?php } ?>
    </div>
 </div>
 <?php } ?>
-<button class = "btn btn-primary m-3" type = "submit" name = "submit_quiz">Submit Quiz</button>
+<?php if($data->quiz_complete !== true){ ?>
+<button class = "btn btn-primary m-3" type = "submit" name = "submit_quiz">Check Quiz</button>
+<?php }else{ ?>
+<button class = "btn btn-success m-3" type = "submit" name = "view_reward">Submit & View Results</button>
+<?php } ?>
 </form>
 </div>
 </div>

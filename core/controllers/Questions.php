@@ -11,6 +11,9 @@ class Questions extends Controller{
             redirect('register');
         }
 
+        /* Set quiz status */
+        $quiz_complete = false;
+
         /* Get the data of the current user based on the encyrpted email cookie value */
         $user_data = get_user_data_from_email(master_key('decrypt', $_COOKIE['loggedin']));
 
@@ -41,16 +44,22 @@ class Questions extends Controller{
         
         /* If the quiz is submitted, check that the forms are filled in and check answers */
         if(isset($_POST['submit_quiz'])){
-            if(isset($_POST['radio_group'], $_POST['fill_blank'])){
-                //Something...
+          
+            if(isset($_POST['radio_group'], $_POST['fill_blank'], $_POST['select'])){
+                $quiz_complete = true;
+                
+                //More stuff
+                
             }else{
-                $_SESSION['error'][] = "Please fill in all the questions.";
+                $quiz_complete = false;
+                $_SESSION['info'][] = "Please fill in all the questions.";
             }
         }
 
         /* Send data to the view */
         $data = [
-           'questions' => $questions
+           'questions' => $questions,
+           'quiz_complete' => $quiz_complete
         ];
 
         $view = new \FBLA\Views\View('questions/questions', (array) $this);

@@ -19,7 +19,7 @@ function notify() {
 
                 /* Output a Bootstrap alert. */
                 echo '
-                <div class="alert alert-warning show m-2" role="alert">
+                <div class="alert alert-danger show m-2" role="alert">
                 '.$message.'
                 </div>
 				';

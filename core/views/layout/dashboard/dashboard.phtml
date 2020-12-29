@@ -16,6 +16,41 @@ get_five_recent_completed_quizes(master_key('decrypt', $_COOKIE['loggedin']));
 <div id="chart-container"></div>
 </div>
 </div>
+<div class = "card m-3">
+<div class = "card-header">
+<div class = "card-title"><h4>Badges</h4></div>
+</div>
+<div class = "card-body">
+<div class = "card-text">Badges can be earned by taking more quizes and leveling up. Grow your knowlegde about FBLA and earn bragging rights.</div>
+<br>
+<?php echo $data->badge ?>
+</div>
+</div>
+<div class = "card m-3">
+<div class = "card-header">
+<div class = "card-title"><h4>Quiz List</h4></div>
+</div>
+<div class = "card-body">
+<table class="table">
+    <thead>
+        <tr>
+            <th>Score</th>
+            <th>Date Taken</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+        <?php
+	        $users_result = FBLA\Database\Database::$db->query("SELECT * FROM quiz_scores");
+	        while($row = $users_result->fetch_assoc()){ ?>
+            <td><?php echo $row['score'] ?></td>
+            <td><?php echo $row['score_timestamp'] ?></td>
+            <?php } ?>
+        </tr>
+    </tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 </div>

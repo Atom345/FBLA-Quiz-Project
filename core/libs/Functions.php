@@ -94,8 +94,7 @@ function send_questions($payload){
         $questions_seperated[0],
         $questions_seperated[1],
         $questions_seperated[2],
-        $questions_seperated[3],
-        $questions_seperated[4]
+        //$questions_seperated[3]
     );
 
     $in    = str_repeat('?,', count($questions_array) - 1) . '?';
@@ -113,10 +112,29 @@ function send_questions($payload){
 }
 
 function generate_quiz_number_set(){
-    $numbers = range(1, 50);
-    shuffle($numbers);
-    $return_numbers = $numbers[0].','.$numbers[1].','.$numbers['2'].','.$numbers[3].','.$numbers[4];
-    return $return_numbers;
+
+    $sql_one = "SELECT `question_id` FROM `questions` WHERE question_type='radio' order by rand() limit 1";
+    $query_one = FBLA\Database\Database::$db->query($sql_one);
+    while($row = $query_one->fetch_assoc()) {
+        $radio_question_number = $row['question_id'];
+    }
+
+    $sql_two = "SELECT `question_id` FROM `questions` WHERE question_type='blank' order by rand() limit 1";
+    $query_two = FBLA\Database\Database::$db->query($sql_two);
+    while($row = $query_two->fetch_assoc()) {
+        $blank_question_number = $row['question_id'];
+    }
+
+    $sql_three = "SELECT `question_id` FROM `questions` WHERE question_type='select' order by rand() limit 1";
+    $query_three = FBLA\Database\Database::$db->query($sql_three);
+    while($row = $query_three->fetch_assoc()) {
+        $select_question_number = $row['question_id'];
+    }
+
+    $question_string = $radio_question_number . ',' . $blank_question_number . ',' . $select_question_number;
+
+    return $question_string;
+
 }
 
 function master_key($action, $string) {
@@ -161,7 +179,52 @@ function get_five_recent_completed_quizes($user_id){
     $result = $stmt->get_result();
 
     while($row = $result->fetch_assoc()) {
-        die(var_dump($row));
+        return $row;
+    }
+}
+
+function get_quiz_data_from_user_id($user_id){
+    $stmt = FBLA\Database\Database::$db->prepare("SELECT * FROM `quiz_progress` WHERE user_id=? ORDER BY `quiz_timestamp` LIMIT 1"); 
+    $stmt->bind_param("s", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    while($row = $result->fetch_assoc()) {
+        return $row;
+    }
+}
+
+function get_recent_quiz_id_from_user_id($user_id){
+    $stmt = FBLA\Database\Database::$db->prepare("SELECT * FROM `quiz_progress` WHERE user_id=? ORDER BY `quiz_timestamp` LIMIT 1"); 
+    $stmt->bind_param("s", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    while($row = $result->fetch_assoc()) {
+        return $row['quiz_id'];
+    }
+}
+
+function get_most_recent_score($user_id){
+    $stmt = FBLA\Database\Database::$db->prepare("SELECT * FROM `quiz_scores` WHERE user_id=? ORDER BY `score_timestamp` LIMIT 1"); 
+    $stmt->bind_param("s", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    while($row = $result->fetch_assoc()) {
+        return $row['score'];
+    }
+}
+
+function count_quizes($user_id){
+    $stmt = FBLA\Database\Database::$db->prepare("SELECT COUNT(*) AS quizes FROM `quiz_progress` WHERE user_id=? and finished='true'"); 
+    $stmt->bind_param("s", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    while($row = $result->fetch_assoc()) {
+        $return_string = $row['quizes'];
+        return strval($return_string);
     }
 }
 
