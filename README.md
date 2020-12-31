@@ -28,8 +28,7 @@ My project for the annual FBLA contest. (Coding and Programming)
 1. Website Design ✅
 2. Overall Website security.
 3. Add more questions. ✅
-4. Add more sign-in options.
-5. Implement Google Recaptcha to prevent bot spam.
+4. Implement Google Recaptcha to prevent bot spam.
 
 <h3>How to deploy for development:</h3>
 
@@ -40,3 +39,8 @@ My project for the annual FBLA contest. (Coding and Programming)
 5. Visit your website URL to install. (http://localhost/)
 6. Fill out the details required by the installer.
 7. Once you are finished, you can go to `http://localhost/` and the project will be deployed there.
+8. To login to the default account, go to `http://localhost/login` and user the login details below:
+<ul>
+<li>Email: admin@admin.com</li>
+<li>Password: admin</li>
+</ul> 

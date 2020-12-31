@@ -1,0 +1,121 @@
+[31-Dec-2020 23:03:44 Europe/Berlin] PHP Warning:  Invalid argument supplied for foreach() in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Functions.php on line 321
+[31-Dec-2020 23:05:11 Europe/Berlin] PHP Warning:  Invalid argument supplied for foreach() in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Functions.php on line 321
+[31-Dec-2020 23:24:56 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'fbla_project.users' doesn't exist in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Functions.php:19
+Stack trace:
+#0 C:\Users\Bryan\Desktop\new\htdocs\core\libs\Functions.php(19): mysqli->prepare('SELECT * FROM `...')
+#1 C:\Users\Bryan\Desktop\new\htdocs\core\libs\UserData.php(16): get_user_data_from_email('admin@admin.com')
+#2 C:\Users\Bryan\Desktop\new\htdocs\core\views\layout\includes\menu.phtml(16): FBLA\UserData\UserData::userdata('name')
+#3 C:\Users\Bryan\Desktop\new\htdocs\core\libs\View.php(54): require('C:\\Users\\Bryan\\...')
+#4 C:\Users\Bryan\Desktop\new\htdocs\core\libs\Controller.php(42): FBLA\Views\View->run()
+#5 C:\Users\Bryan\Desktop\new\htdocs\core\libs\App.php(53): FBLA\Controllers\Controller->run()
+#6 C:\Users\Bryan\Desktop\new\htdocs\index.php(7): FBLA\App->__construct()
+#7 {main}
+  thrown in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Functions.php on line 19
+[31-Dec-2020 23:25:41 Europe/Berlin] PHP Warning:  Use of undefined constant SITE_URL - assumed 'SITE_URL' (this will throw an Error in a future version of PHP) in C:\Users\Bryan\Desktop\new\htdocs\core\init.php on line 20
+[31-Dec-2020 23:25:41 Europe/Berlin] PHP Warning:  Use of undefined constant DB_HOST - assumed 'DB_HOST' (this will throw an Error in a future version of PHP) in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php on line 22
+[31-Dec-2020 23:25:41 Europe/Berlin] PHP Warning:  Use of undefined constant DB_USER - assumed 'DB_USER' (this will throw an Error in a future version of PHP) in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php on line 23
+[31-Dec-2020 23:25:41 Europe/Berlin] PHP Warning:  Use of undefined constant DB_PASS - assumed 'DB_PASS' (this will throw an Error in a future version of PHP) in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php on line 24
+[31-Dec-2020 23:25:41 Europe/Berlin] PHP Warning:  Use of undefined constant DB_NAME - assumed 'DB_NAME' (this will throw an Error in a future version of PHP) in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php on line 25
+[31-Dec-2020 23:25:43 Europe/Berlin] PHP Warning:  mysqli::__construct(): php_network_getaddresses: getaddrinfo failed: No such host is known.  in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php on line 25
+[31-Dec-2020 23:25:43 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: php_network_getaddresses: getaddrinfo failed: No such host is known.  in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php:25
+Stack trace:
+#0 C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php(25): mysqli->__construct('DB_HOST', 'DB_USER', 'DB_PASS', 'DB_NAME')
+#1 C:\Users\Bryan\Desktop\new\htdocs\core\libs\App.php(41): FBLA\Database\Database::start()
+#2 C:\Users\Bryan\Desktop\new\htdocs\index.php(7): FBLA\App->__construct()
+#3 {main}
+  thrown in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php on line 25
+[31-Dec-2020 23:25:43 Europe/Berlin] PHP Warning:  Use of undefined constant SITE_URL - assumed 'SITE_URL' (this will throw an Error in a future version of PHP) in C:\Users\Bryan\Desktop\new\htdocs\core\init.php on line 20
+[31-Dec-2020 23:25:43 Europe/Berlin] PHP Warning:  Use of undefined constant DB_HOST - assumed 'DB_HOST' (this will throw an Error in a future version of PHP) in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php on line 22
+[31-Dec-2020 23:25:43 Europe/Berlin] PHP Warning:  Use of undefined constant DB_USER - assumed 'DB_USER' (this will throw an Error in a future version of PHP) in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php on line 23
+[31-Dec-2020 23:25:43 Europe/Berlin] PHP Warning:  Use of undefined constant DB_PASS - assumed 'DB_PASS' (this will throw an Error in a future version of PHP) in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php on line 24
+[31-Dec-2020 23:25:43 Europe/Berlin] PHP Warning:  Use of undefined constant DB_NAME - assumed 'DB_NAME' (this will throw an Error in a future version of PHP) in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php on line 25
+[31-Dec-2020 23:25:46 Europe/Berlin] PHP Warning:  mysqli::__construct(): php_network_getaddresses: getaddrinfo failed: No such host is known.  in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php on line 25
+[31-Dec-2020 23:25:46 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: php_network_getaddresses: getaddrinfo failed: No such host is known.  in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php:25
+Stack trace:
+#0 C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php(25): mysqli->__construct('DB_HOST', 'DB_USER', 'DB_PASS', 'DB_NAME')
+#1 C:\Users\Bryan\Desktop\new\htdocs\core\libs\App.php(41): FBLA\Database\Database::start()
+#2 C:\Users\Bryan\Desktop\new\htdocs\index.php(7): FBLA\App->__construct()
+#3 {main}
+  thrown in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php on line 25
+[31-Dec-2020 23:27:00 Europe/Berlin] PHP Warning:  Use of undefined constant SITE_URL - assumed 'SITE_URL' (this will throw an Error in a future version of PHP) in C:\Users\Bryan\Desktop\new\htdocs\core\init.php on line 20
+[31-Dec-2020 23:27:00 Europe/Berlin] PHP Warning:  Use of undefined constant DB_HOST - assumed 'DB_HOST' (this will throw an Error in a future version of PHP) in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php on line 22
+[31-Dec-2020 23:27:00 Europe/Berlin] PHP Warning:  Use of undefined constant DB_USER - assumed 'DB_USER' (this will throw an Error in a future version of PHP) in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php on line 23
+[31-Dec-2020 23:27:00 Europe/Berlin] PHP Warning:  Use of undefined constant DB_PASS - assumed 'DB_PASS' (this will throw an Error in a future version of PHP) in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php on line 24
+[31-Dec-2020 23:27:00 Europe/Berlin] PHP Warning:  Use of undefined constant DB_NAME - assumed 'DB_NAME' (this will throw an Error in a future version of PHP) in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php on line 25
+[31-Dec-2020 23:27:02 Europe/Berlin] PHP Warning:  mysqli::__construct(): php_network_getaddresses: getaddrinfo failed: No such host is known.  in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php on line 25
+[31-Dec-2020 23:27:02 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: php_network_getaddresses: getaddrinfo failed: No such host is known.  in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php:25
+Stack trace:
+#0 C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php(25): mysqli->__construct('DB_HOST', 'DB_USER', 'DB_PASS', 'DB_NAME')
+#1 C:\Users\Bryan\Desktop\new\htdocs\core\libs\App.php(41): FBLA\Database\Database::start()
+#2 C:\Users\Bryan\Desktop\new\htdocs\index.php(7): FBLA\App->__construct()
+#3 {main}
+  thrown in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php on line 25
+[31-Dec-2020 23:27:21 Europe/Berlin] PHP Warning:  Use of undefined constant SITE_URL - assumed 'SITE_URL' (this will throw an Error in a future version of PHP) in C:\Users\Bryan\Desktop\new\htdocs\core\init.php on line 20
+[31-Dec-2020 23:27:21 Europe/Berlin] PHP Warning:  Use of undefined constant DB_HOST - assumed 'DB_HOST' (this will throw an Error in a future version of PHP) in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php on line 22
+[31-Dec-2020 23:27:21 Europe/Berlin] PHP Warning:  Use of undefined constant DB_USER - assumed 'DB_USER' (this will throw an Error in a future version of PHP) in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php on line 23
+[31-Dec-2020 23:27:22 Europe/Berlin] PHP Warning:  Use of undefined constant DB_PASS - assumed 'DB_PASS' (this will throw an Error in a future version of PHP) in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php on line 24
+[31-Dec-2020 23:27:22 Europe/Berlin] PHP Warning:  Use of undefined constant DB_NAME - assumed 'DB_NAME' (this will throw an Error in a future version of PHP) in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php on line 25
+[31-Dec-2020 23:27:24 Europe/Berlin] PHP Warning:  mysqli::__construct(): php_network_getaddresses: getaddrinfo failed: No such host is known.  in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php on line 25
+[31-Dec-2020 23:27:24 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: php_network_getaddresses: getaddrinfo failed: No such host is known.  in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php:25
+Stack trace:
+#0 C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php(25): mysqli->__construct('DB_HOST', 'DB_USER', 'DB_PASS', 'DB_NAME')
+#1 C:\Users\Bryan\Desktop\new\htdocs\core\libs\App.php(41): FBLA\Database\Database::start()
+#2 C:\Users\Bryan\Desktop\new\htdocs\index.php(7): FBLA\App->__construct()
+#3 {main}
+  thrown in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php on line 25
+[31-Dec-2020 23:27:30 Europe/Berlin] PHP Notice:  Trying to access array offset on value of type null in C:\Users\Bryan\Desktop\new\htdocs\core\libs\UserData.php on line 17
+[31-Dec-2020 23:27:30 Europe/Berlin] PHP Notice:  Trying to access array offset on value of type null in C:\Users\Bryan\Desktop\new\htdocs\core\libs\UserData.php on line 17
+[31-Dec-2020 23:29:25 Europe/Berlin] PHP Notice:  Undefined index: content in C:\Users\Bryan\Desktop\new\htdocs\core\views\layout\container.phtml on line 56
+[31-Dec-2020 23:29:45 Europe/Berlin] PHP Warning:  Use of undefined constant SITE_URL - assumed 'SITE_URL' (this will throw an Error in a future version of PHP) in C:\Users\Bryan\Desktop\new\htdocs\core\init.php on line 20
+[31-Dec-2020 23:29:45 Europe/Berlin] PHP Warning:  Use of undefined constant DB_HOST - assumed 'DB_HOST' (this will throw an Error in a future version of PHP) in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php on line 22
+[31-Dec-2020 23:29:45 Europe/Berlin] PHP Warning:  Use of undefined constant DB_USER - assumed 'DB_USER' (this will throw an Error in a future version of PHP) in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php on line 23
+[31-Dec-2020 23:29:45 Europe/Berlin] PHP Warning:  Use of undefined constant DB_PASS - assumed 'DB_PASS' (this will throw an Error in a future version of PHP) in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php on line 24
+[31-Dec-2020 23:29:45 Europe/Berlin] PHP Warning:  Use of undefined constant DB_NAME - assumed 'DB_NAME' (this will throw an Error in a future version of PHP) in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php on line 25
+[31-Dec-2020 23:29:48 Europe/Berlin] PHP Warning:  mysqli::__construct(): php_network_getaddresses: getaddrinfo failed: No such host is known.  in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php on line 25
+[31-Dec-2020 23:29:48 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: php_network_getaddresses: getaddrinfo failed: No such host is known.  in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php:25
+Stack trace:
+#0 C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php(25): mysqli->__construct('DB_HOST', 'DB_USER', 'DB_PASS', 'DB_NAME')
+#1 C:\Users\Bryan\Desktop\new\htdocs\core\libs\App.php(41): FBLA\Database\Database::start()
+#2 C:\Users\Bryan\Desktop\new\htdocs\index.php(7): FBLA\App->__construct()
+#3 {main}
+  thrown in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php on line 25
+[31-Dec-2020 23:29:48 Europe/Berlin] PHP Warning:  Use of undefined constant SITE_URL - assumed 'SITE_URL' (this will throw an Error in a future version of PHP) in C:\Users\Bryan\Desktop\new\htdocs\core\init.php on line 20
+[31-Dec-2020 23:29:48 Europe/Berlin] PHP Warning:  Use of undefined constant DB_HOST - assumed 'DB_HOST' (this will throw an Error in a future version of PHP) in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php on line 22
+[31-Dec-2020 23:29:48 Europe/Berlin] PHP Warning:  Use of undefined constant DB_USER - assumed 'DB_USER' (this will throw an Error in a future version of PHP) in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php on line 23
+[31-Dec-2020 23:29:48 Europe/Berlin] PHP Warning:  Use of undefined constant DB_PASS - assumed 'DB_PASS' (this will throw an Error in a future version of PHP) in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php on line 24
+[31-Dec-2020 23:29:48 Europe/Berlin] PHP Warning:  Use of undefined constant DB_NAME - assumed 'DB_NAME' (this will throw an Error in a future version of PHP) in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php on line 25
+[31-Dec-2020 23:29:50 Europe/Berlin] PHP Warning:  mysqli::__construct(): php_network_getaddresses: getaddrinfo failed: No such host is known.  in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php on line 25
+[31-Dec-2020 23:29:50 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: php_network_getaddresses: getaddrinfo failed: No such host is known.  in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php:25
+Stack trace:
+#0 C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php(25): mysqli->__construct('DB_HOST', 'DB_USER', 'DB_PASS', 'DB_NAME')
+#1 C:\Users\Bryan\Desktop\new\htdocs\core\libs\App.php(41): FBLA\Database\Database::start()
+#2 C:\Users\Bryan\Desktop\new\htdocs\index.php(7): FBLA\App->__construct()
+#3 {main}
+  thrown in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php on line 25
+[31-Dec-2020 23:35:03 Europe/Berlin] PHP Warning:  Use of undefined constant SITE_URL - assumed 'SITE_URL' (this will throw an Error in a future version of PHP) in C:\Users\Bryan\Desktop\new\htdocs\core\init.php on line 20
+[31-Dec-2020 23:35:03 Europe/Berlin] PHP Warning:  Use of undefined constant DB_HOST - assumed 'DB_HOST' (this will throw an Error in a future version of PHP) in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php on line 22
+[31-Dec-2020 23:35:03 Europe/Berlin] PHP Warning:  Use of undefined constant DB_USER - assumed 'DB_USER' (this will throw an Error in a future version of PHP) in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php on line 23
+[31-Dec-2020 23:35:03 Europe/Berlin] PHP Warning:  Use of undefined constant DB_PASS - assumed 'DB_PASS' (this will throw an Error in a future version of PHP) in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php on line 24
+[31-Dec-2020 23:35:03 Europe/Berlin] PHP Warning:  Use of undefined constant DB_NAME - assumed 'DB_NAME' (this will throw an Error in a future version of PHP) in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php on line 25
+[31-Dec-2020 23:35:05 Europe/Berlin] PHP Warning:  mysqli::__construct(): php_network_getaddresses: getaddrinfo failed: No such host is known.  in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php on line 25
+[31-Dec-2020 23:35:05 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: php_network_getaddresses: getaddrinfo failed: No such host is known.  in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php:25
+Stack trace:
+#0 C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php(25): mysqli->__construct('DB_HOST', 'DB_USER', 'DB_PASS', 'DB_NAME')
+#1 C:\Users\Bryan\Desktop\new\htdocs\core\libs\App.php(41): FBLA\Database\Database::start()
+#2 C:\Users\Bryan\Desktop\new\htdocs\index.php(7): FBLA\App->__construct()
+#3 {main}
+  thrown in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php on line 25
+[31-Dec-2020 23:35:05 Europe/Berlin] PHP Warning:  Use of undefined constant SITE_URL - assumed 'SITE_URL' (this will throw an Error in a future version of PHP) in C:\Users\Bryan\Desktop\new\htdocs\core\init.php on line 20
+[31-Dec-2020 23:35:05 Europe/Berlin] PHP Warning:  Use of undefined constant DB_HOST - assumed 'DB_HOST' (this will throw an Error in a future version of PHP) in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php on line 22
+[31-Dec-2020 23:35:05 Europe/Berlin] PHP Warning:  Use of undefined constant DB_USER - assumed 'DB_USER' (this will throw an Error in a future version of PHP) in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php on line 23
+[31-Dec-2020 23:35:05 Europe/Berlin] PHP Warning:  Use of undefined constant DB_PASS - assumed 'DB_PASS' (this will throw an Error in a future version of PHP) in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php on line 24
+[31-Dec-2020 23:35:05 Europe/Berlin] PHP Warning:  Use of undefined constant DB_NAME - assumed 'DB_NAME' (this will throw an Error in a future version of PHP) in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php on line 25
+[31-Dec-2020 23:35:07 Europe/Berlin] PHP Warning:  mysqli::__construct(): php_network_getaddresses: getaddrinfo failed: No such host is known.  in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php on line 25
+[31-Dec-2020 23:35:07 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: php_network_getaddresses: getaddrinfo failed: No such host is known.  in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php:25
+Stack trace:
+#0 C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php(25): mysqli->__construct('DB_HOST', 'DB_USER', 'DB_PASS', 'DB_NAME')
+#1 C:\Users\Bryan\Desktop\new\htdocs\core\libs\App.php(41): FBLA\Database\Database::start()
+#2 C:\Users\Bryan\Desktop\new\htdocs\index.php(7): FBLA\App->__construct()
+#3 {main}
+  thrown in C:\Users\Bryan\Desktop\new\htdocs\core\libs\Database.php on line 25
+[31-Dec-2020 23:36:02 Europe/Berlin] PHP Notice:  Undefined index: content in C:\Users\Bryan\Desktop\new\htdocs\core\views\layout\container.phtml on line 56

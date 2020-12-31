@@ -44,25 +44,40 @@ class Questions extends Controller{
             }
         }
 
-
         /* If the quiz is submitted, check that the forms are filled in and check answers */
         if(isset($_POST['submit_quiz'])){
-          
-            if(isset($_POST['radio_group'], $_POST['fill_blank'], $_POST['select'])){
+
+            /* Filter the values submitted */
+            filter_var($_POST['radio_group'], FILTER_VALIDATE_EMAIL);
+            filter_var($_POST['fill_blank'], FILTER_VALIDATE_EMAIL);
+            filter_var($_POST['select'], FILTER_VALIDATE_EMAIL);
+            
+            if(isset($_POST['radio_group'], $_POST['radio_group_two'], $_POST['fill_blank'], $_POST['select'], $_POST['response'],)){
                 $quiz_complete = true;
                
                 $correct_answers = get_correct_answer_from_questions($quiz_numbers);
+                $answer_one = $correct_answers[0]['correct_value'];
+                $answer_two = $correct_answers[1]['correct_value'];
+                $answer_three = $correct_answers[2]['correct_value'];
+                $answer_four = $correct_answers[3]['correct_value'];
+                $answer_five = $correct_answers[4]['correct_value'];
 
                 /* Set the starting score */
                     $score = "0/5";
-                if($correct_answers['radio'] == $_POST['radio_group']){
+                if($answer_one == $_POST['radio_group']){
                     $score = "1/5";
                 }
-                if($correct_answers['blank'] == $_POST['fill_blank']){
+                if($answer_two == $_POST['radio_group_two']){
                     $score = "2/5";
                 }
-                if($correct_answers['select'] == array_sum($_POST['select'])){
+                if($answer_three == $_POST['fill_blank']){
                     $score = "3/5";
+                }
+                if($answer_four == array_sum($_POST['select'])){
+                    $score = "4/5";
+                }
+                if(get_correct_answer_response($answer_five, $_POST['response']) == true){
+                    $score = "5/5";
                 }
 
                 $quiz_user_id = \FBLA\UserData\UserData::userdata('user_id');

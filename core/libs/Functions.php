@@ -31,10 +31,11 @@ function get_correct_answer_from_questions($question_number_set){
     $answers_seperated = explode(",", $question_number_set);
 
     $answers_array = array(
-        $answers_seperated[0],
-        $answers_seperated[1],
-        $answers_seperated[2]
-        //$questions_seperated[3]
+        $answers_seperated[0], //Question One
+        $answers_seperated[1], //Question Two
+        $answers_seperated[2], //Question Three
+        $answers_seperated[3], //Question Four 
+        $answers_seperated[4] //Question Five
     );
 
     $in    = str_repeat('?,', count($answers_array) - 1) . '?';
@@ -46,15 +47,8 @@ function get_correct_answer_from_questions($question_number_set){
 
     $stmt->execute();
     $result = $stmt->get_result();
-    $data = $result->fetch_all(MYSQLI_ASSOC);   
-
-    $data_array = array(
-        'radio' => $data[0]['correct_value'],
-        'blank' => $data[1]['correct_value'],
-        'select' => $data[2]['correct_value']
-    );
-
-    return $data_array;
+    $data = $result->fetch_all(MYSQLI_ASSOC); 
+    return $data;
 }
 
 function redirect($path){
@@ -109,12 +103,13 @@ function get_quiz_data($quiz_id){
 
 function send_questions($payload){
     $questions_seperated = explode(",", $payload);
-
+    
     $questions_array = array(
         $questions_seperated[0],
         $questions_seperated[1],
         $questions_seperated[2],
-        //$questions_seperated[3]
+        $questions_seperated[3],
+        $questions_seperated[4]
     );
 
     $in    = str_repeat('?,', count($questions_array) - 1) . '?';
@@ -151,7 +146,19 @@ function generate_quiz_number_set(){
         $select_question_number = $row['question_id'];
     }
 
-    $question_string = $radio_question_number . ',' . $blank_question_number . ',' . $select_question_number;
+    $sql_four = "SELECT `question_id` FROM `questions` WHERE question_type='radio_two' order by rand() limit 1";
+    $query_four = FBLA\Database\Database::$db->query($sql_four);
+    while($row = $query_four->fetch_assoc()) {
+        $radio_two_question_number = $row['question_id'];
+    }
+
+    $sql_five = "SELECT `question_id` FROM `questions` WHERE question_type='response' order by rand() limit 1";
+    $query_five = FBLA\Database\Database::$db->query($sql_five);
+    while($row = $query_five->fetch_assoc()) {
+        $response_question_number = $row['question_id'];
+    }
+
+    $question_string = $radio_question_number.','.$blank_question_number.','.$select_question_number.','.$radio_two_question_number.','.$response_question_number;
 
     return $question_string;
 
@@ -307,6 +314,14 @@ function backup_database($host,$user,$pass,$name, $tables=false, $backup_name=fa
 	$backup_name = $backup_name ? $backup_name : $name.'___('.date('H-i-s').'_'.date('d-m-Y').').sql';
 	ob_get_clean(); header('Content-Type: application/octet-stream');  header("Content-Transfer-Encoding: Binary");  header('Content-Length: '. (function_exists('mb_strlen') ? mb_strlen($content, '8bit'): strlen($content)) );    header("Content-disposition: attachment; filename=\"".$backup_name."\""); //Set backup name if set.
 	echo $content; exit;
+}
+
+function get_correct_answer_response($answer, $post){
+    if(strlen($post) >= 100){
+        return true; //Fix this so it will only return true if certain keywords are in the answer.
+    }else{
+        return false;
+    }
 }
 
 ?>
