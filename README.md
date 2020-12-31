@@ -3,7 +3,6 @@ My project for the annual FBLA contest. (Coding and Programming)
 
 <h1>⚠️ No longer maintained</h1>
 <p>As of March 1, 2021 this repo will no longer be maintained. Everthing should be stable and working for PHP 7.0+ and PHP 8.0+. I would not recommend cloning this repo if you are involved in FBLA-PBL, this could lead you to getting disqualified in a competetion.</p>
-<hr>
 
 **Technologies Used:**
 - VSCode
