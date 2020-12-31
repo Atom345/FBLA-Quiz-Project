@@ -26,19 +26,35 @@ function get_user_data_from_email($user_email){
     }
 }
 
-function get_correct_answer_from_question($question_id){
-    $stmt = FBLA\Database\Database::$db->prepare('SELECT * FROM `questions` WHERE question_id=? LIMIT 1'); 
-    $stmt->bind_param("s", $question_id);
+
+function get_correct_answer_from_questions($question_number_set){
+    $answers_seperated = explode(",", $question_number_set);
+
+    $answers_array = array(
+        $answers_seperated[0],
+        $answers_seperated[1],
+        $answers_seperated[2]
+        //$questions_seperated[3]
+    );
+
+    $in    = str_repeat('?,', count($answers_array) - 1) . '?';
+    $sql   = "SELECT `correct_value` FROM questions WHERE question_id IN ($in)"; 
+    $stmt  = FBLA\Database\Database::$db->prepare($sql);
+
+    $types = str_repeat('s', count($answers_array));
+    $stmt->bind_param($types, ...$answers_array); 
+
     $stmt->execute();
     $result = $stmt->get_result();
+    $data = $result->fetch_all(MYSQLI_ASSOC);   
 
-    while($row = $result->fetch_assoc()) {
-        return $row['correct_value'];
-    }
-}
+    $data_array = array(
+        'radio' => $data[0]['correct_value'],
+        'blank' => $data[1]['correct_value'],
+        'select' => $data[2]['correct_value']
+    );
 
-function back_up_database(){
-
+    return $data_array;
 }
 
 function redirect($path){
@@ -59,15 +75,19 @@ function is_logged_in(){
 }
 
 function user_has_unfinished_quiz($user_id){
-    $stmt = FBLA\Database\Database::$db->prepare('SELECT * FROM `quiz_progress` WHERE user_id=? LIMIT 1'); 
+    /* Set DESC in mysql query to get latest result */
+    $stmt = FBLA\Database\Database::$db->prepare('SELECT * FROM `quiz_progress` WHERE user_id=? ORDER BY `quiz_timestamp` DESC'); 
     $stmt->bind_param("s", $user_id);
     $stmt->execute();
     $result = $stmt->get_result();
 
     while($row = $result->fetch_assoc()) {
- 
         if($row['finished'] == 'false'){
-            return true;
+            $data_payload = array(
+                'quiz_id' => $row['quiz_id'],
+                'questions' => $row['quiz_random_questions']
+            );
+            return $data_payload;
         }else{
             return false;
         }
@@ -75,9 +95,9 @@ function user_has_unfinished_quiz($user_id){
 
 }
 
-function get_user_quiz_data($user_id){
-    $stmt = FBLA\Database\Database::$db->prepare('SELECT * FROM `quiz_progress` WHERE user_id=? LIMIT 1'); 
-    $stmt->bind_param("s", $user_id);
+function get_quiz_data($quiz_id){
+    $stmt = FBLA\Database\Database::$db->prepare('SELECT * FROM `quiz_progress` WHERE quiz_id=? ORDER BY `quiz_timestamp` LIMIT 1'); 
+    $stmt->bind_param("s", $quiz_id);
     $stmt->execute();
     $result = $stmt->get_result();
 
@@ -177,10 +197,8 @@ function get_five_recent_completed_quizes($user_id){
     $stmt->bind_param("s", $user_id);
     $stmt->execute();
     $result = $stmt->get_result();
-
-    while($row = $result->fetch_assoc()) {
-        return $row;
-    }
+    $data = $result->fetch_all(MYSQLI_ASSOC); 
+    return $data;
 }
 
 function get_quiz_data_from_user_id($user_id){
@@ -205,17 +223,6 @@ function get_recent_quiz_id_from_user_id($user_id){
     }
 }
 
-function get_most_recent_score($user_id){
-    $stmt = FBLA\Database\Database::$db->prepare("SELECT * FROM `quiz_scores` WHERE user_id=? ORDER BY `score_timestamp` LIMIT 1"); 
-    $stmt->bind_param("s", $user_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    while($row = $result->fetch_assoc()) {
-        return $row['score'];
-    }
-}
-
 function count_quizes($user_id){
     $stmt = FBLA\Database\Database::$db->prepare("SELECT COUNT(*) AS quizes FROM `quiz_progress` WHERE user_id=? and finished='true'"); 
     $stmt->bind_param("s", $user_id);
@@ -226,6 +233,80 @@ function count_quizes($user_id){
         $return_string = $row['quizes'];
         return strval($return_string);
     }
+}
+
+function count_failed_quizes($user_id){
+    $stmt = FBLA\Database\Database::$db->prepare("SELECT COUNT(*) AS quizes FROM `quiz_progress` WHERE user_id=? and finished='true' and score='0/5'"); 
+    $stmt->bind_param("s", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    while($row = $result->fetch_assoc()) {
+        $return_string = $row['quizes'];
+        return strval($return_string);
+    }
+}
+
+function count_global_questions($user_id){
+    $stmt = FBLA\Database\Database::$db->prepare("SELECT COUNT(*) AS questions FROM `questions`");
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    while($row = $result->fetch_assoc()) {
+        $return_string = $row['questions'];
+        return strval($return_string);
+    }
+}
+
+function get_most_recent_score($user_id){
+    $stmt = FBLA\Database\Database::$db->prepare("SELECT * FROM `quiz_progress` WHERE user_id=? ORDER BY `quiz_timestamp` DESC LIMIT 1"); 
+    $stmt->bind_param("s", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    while($row = $result->fetch_assoc()) {
+        return $row['score'];
+    }
+}
+
+function is_admin($user_id){
+    $stmt = FBLA\Database\Database::$db->prepare("SELECT * FROM `users` WHERE user_id=? LIMIT 1"); 
+    $stmt->bind_param("s", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    while($row = $result->fetch_assoc()) {
+        if($row['admin'] == 1){
+            return true;
+        }else{
+            return false;
+        }
+    }
+}
+
+function backup_database($host,$user,$pass,$name, $tables=false, $backup_name=false)
+{
+    /* Set time limit and encoding then connect */
+	set_time_limit(3000); FBLA\Database\Database::$db->select_db($name); FBLA\Database\Database::$db->query("SET NAMES 'utf8'");
+    $queryTables = FBLA\Database\Database::$db->query('SHOW TABLES'); while($row = $queryTables->fetch_row()) { $target_tables[] = $row[0]; }	if($tables !== false) { $target_tables = array_intersect( $target_tables, $tables); } 
+    $content = "SET SQL_MODE = \"NO_AUTO_VALUE_ON_ZERO\";\r\nSET time_zone = \"+00:00\";\r\n\r\n\r\n/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;\r\n/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;\r\n/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;\r\n/*!40101 SET NAMES utf8 */;\r\n--\r\n-- Database: `".$name."`\r\n--\r\n\r\n\r\n";
+	foreach($target_tables as $table){
+		if (empty($table)){ continue; } 
+		$result	= FBLA\Database\Database::$db->query('SELECT * FROM `'.$table.'`');  	$fields_amount=$result->field_count;  $rows_num=FBLA\Database\Database::$db->affected_rows; 	$res = FBLA\Database\Database::$db->query('SHOW CREATE TABLE '.$table);	$TableMLine=$res->fetch_row(); 
+		$content .= "\n\n".$TableMLine[1].";\n\n";   $TableMLine[1]=str_ireplace('CREATE TABLE `','CREATE TABLE IF NOT EXISTS `',$TableMLine[1]);
+		for ($i = 0, $st_counter = 0; $i < $fields_amount;   $i++, $st_counter=0) {
+            /* Fetch all the rows */
+			while($row = $result->fetch_row())	{
+				if ($st_counter%100 == 0 || $st_counter == 0 )	{$content .= "\nINSERT INTO ".$table." VALUES";}
+					$content .= "\n(";    for($j=0; $j<$fields_amount; $j++){ $row[$j] = str_replace("\n","\\n", addslashes($row[$j]) ); if (isset($row[$j])){$content .= '"'.$row[$j].'"' ;}  else{$content .= '""';}	   if ($j<($fields_amount-1)){$content.= ',';}   }        $content .=")";
+				if ( (($st_counter+1)%100==0 && $st_counter!=0) || $st_counter+1==$rows_num) {$content .= ";";} else {$content .= ",";}	$st_counter=$st_counter+1;
+			}
+		} $content .="\n\n\n";
+	}
+	$content .= "\r\n\r\n/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;\r\n/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;\r\n/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;"; //Database backup headers.
+	$backup_name = $backup_name ? $backup_name : $name.'___('.date('H-i-s').'_'.date('d-m-Y').').sql';
+	ob_get_clean(); header('Content-Type: application/octet-stream');  header("Content-Transfer-Encoding: Binary");  header('Content-Length: '. (function_exists('mb_strlen') ? mb_strlen($content, '8bit'): strlen($content)) );    header("Content-disposition: attachment; filename=\"".$backup_name."\""); //Set backup name if set.
+	echo $content; exit;
 }
 
 ?>

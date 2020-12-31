@@ -1,6 +1,6 @@
 <?php
 
-get_five_recent_completed_quizes(master_key('decrypt', $_COOKIE['loggedin']));
+$quiz = get_five_recent_completed_quizes(\FBLA\UserData\UserData::userdata('user_id'));
 
 ?>
 <div class = "container">
@@ -11,11 +11,44 @@ get_five_recent_completed_quizes(master_key('decrypt', $_COOKIE['loggedin']));
     <div class = "card-title"><h4>Welcome back, <?php echo FBLA\UserData\UserData::userdata('name') ?></h4></div>
 </div>
 <div class = "card-body">
+<?php if($data->quiz_count > 4){ ?>
 <p>We have assembled some quiz stats for you:</p>
-<small class = "text-muted">The stats below focus on the five of the most recent quizes that you have taken.</small>
-<div id="chart-container"></div>
+<ul>
+<li>Number of quizes taken: <?php echo count_quizes(FBLA\UserData\UserData::userdata('user_id')) ?></li>
+<li>Failed Quizes: <?php echo count_failed_quizes(FBLA\UserData\UserData::userdata('user_id')) ?> (0/5)</li>
+<li>Total amount of questions: <?php echo count_global_questions(FBLA\UserData\UserData::userdata('user_id')) ?></li>
+<ul>
+<?php }else{ ?>
+    <div class="alert alert-primary" role="alert">
+        When you finish 5 quizes, we can start gauging your progress.
+    </div>
+<?php } ?>
 </div>
 </div>
+<?php if(is_admin(FBLA\UserData\UserData::userdata('user_id')) == true){ ?>
+<div class = "card m-3">
+<div class = "card-header">
+<div class = "card-title"><h4>Basic Admin Options</h4></div>
+</div>
+<div class = "card-body">
+<div class = "row">
+<div class = "col-md-4">
+<div class = "card">
+<div class = "card-body">
+<div class = "form-grup">
+<form method = "post">
+<button class = "btn btn-info" type = "submit" name = "backup_database">Backup Database</button>
+</form>
+<br>
+<small class = "text-muted">Backing up your database will create a downloadable copy for which you can save.</small>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<?php } ?>
 <div class = "card m-3">
 <div class = "card-header">
 <div class = "card-title"><h4>Badges</h4></div>
@@ -39,14 +72,14 @@ get_five_recent_completed_quizes(master_key('decrypt', $_COOKIE['loggedin']));
         </tr>
     </thead>
     <tbody>
-        <tr>
         <?php
-	        $users_result = FBLA\Database\Database::$db->query("SELECT * FROM quiz_scores");
+	        $users_result = FBLA\Database\Database::$db->query("SELECT * FROM `quiz_progress` WHERE user_id=".\FBLA\UserData\UserData::userdata('user_id')."");
 	        while($row = $users_result->fetch_assoc()){ ?>
+             <tr>
             <td><?php echo $row['score'] ?></td>
-            <td><?php echo $row['score_timestamp'] ?></td>
+            <td><?php echo $row['quiz_timestamp'] ?></td>
+            </tr>
             <?php } ?>
-        </tr>
     </tbody>
 </table>
 </div>
@@ -54,61 +87,3 @@ get_five_recent_completed_quizes(master_key('decrypt', $_COOKIE['loggedin']));
 </div>
 </div>
 </div>
-<script>
-
-Highcharts.chart('chart-container', {
-
-title: {
-    text: 'Quiz stats for  <?php echo FBLA\UserData\UserData::userdata('name') ?>'
-},
-
-yAxis: {
-    title: {
-        max: 5,
-        text: 'Quiz Score'
-    }
-},
-
-xAxis: {
-    accessibility: {
-        rangeDescription: 'Quiz Date'
-    }
-},
-
-legend: {
-    layout: 'vertical',
-    align: 'right',
-    verticalAlign: 'middle'
-},
-
-plotOptions: {
-    series: {
-        label: {
-            connectorAllowed: false
-        },
-        pointStart: 2010
-    }
-},
-
-series: [{
-    name: 'Quiz Score',
-    data: [1, 2, 3, 4, 5, 1, 5, 2]
-}],
-
-responsive: {
-    rules: [{
-        condition: {
-            maxWidth: 500
-        },
-        chartOptions: {
-            legend: {
-                layout: 'horizontal',
-                align: 'center',
-                verticalAlign: 'bottom'
-            }
-        }
-    }]
-}
-
-});
-</script>

@@ -32,8 +32,9 @@ class Register extends Controller{
 
             /* Hash the given password using password_hash() and insert user into database. */
             $hashed_password = password_hash($repeat_password, PASSWORD_DEFAULT);
-            $stmt = \FBLA\Database\Database::$db->prepare('INSERT INTO users (`email`, `name`, `pass`) VALUES (?, ?, ?)'); 
-            $stmt->bind_param("sss", $email, $name, $hashed_password);
+            $false = "false";
+            $stmt = \FBLA\Database\Database::$db->prepare('INSERT INTO users (`email`, `name`, `pass`, `admin`) VALUES (?, ?, ?, ?)'); 
+            $stmt->bind_param("ssss", $email, $name, $hashed_password, $false);
             $stmt->execute();
             $stmt->close();
 
