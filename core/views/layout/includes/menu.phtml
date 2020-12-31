@@ -5,10 +5,10 @@
                 <ul class="nav navbar-nav ml-auto">
                 <?php if(is_logged_in() == false){ ?>
                 <li class="nav-item">
-                    <a class="nav-link ml-auto" href="<?php echo url('login') ?>">Login</a>
+                    <a class="nav-link ml-auto text-white" href="<?php echo url('login') ?>">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link ml-auto" href="<?php echo url('register') ?>">Register</a>
+                    <a class="nav-link ml-auto text-white" href="<?php echo url('register') ?>">Register</a>
                 </li>
                 <?php }elseif(FBLA\Routing\Routing::$controller_key !== 'questions'){ ?>
                     <div class="dropdown">

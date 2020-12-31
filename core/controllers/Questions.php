@@ -16,7 +16,7 @@ class Questions extends Controller{
 
         /* Check if user has a unfinished quiz and restore the questions, otherwise, generate and store new questions. */
         $unfinished_quiz = user_has_unfinished_quiz(\FBLA\UserData\UserData::userdata('user_id'));
-        if($unfinished_quiz !== false){
+        if($unfinished_quiz != false){
             $user_quiz = get_quiz_data(strval($unfinished_quiz['quiz_id']));
             $quiz_numbers = $unfinished_quiz['questions'];
             $new_quiz_id = $unfinished_quiz['quiz_id'];
