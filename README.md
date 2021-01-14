@@ -12,7 +12,6 @@ My project for the annual FBLA contest. (Coding and Programming)
 - Bootstrap
 - jQuery
 - Github
-- HighCharts (For user dashboard)
 - Argon UI kit (https://www.creative-tim.com/product/argon-design-system)
 
 **Languages:**
