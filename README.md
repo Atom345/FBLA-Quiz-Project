@@ -5,8 +5,6 @@
 My quiz project for FBLA-PBL 2020-2021 (Coding and Programming)
 </center>
 
-<img src = "showcase.gif">
-
 ### ⚠️ Heads Up!
 <p>This project will no longer be maintained when FBLA-PBL 2020-2021 ends. If you want to use this repo for personal use, everything should be stable and working for PHP 7.0+ . I would not recommend cloning this repo for an event, it could lead to getting disqualified.</p>
 
@@ -35,6 +33,8 @@ My quiz project for FBLA-PBL 2020-2021 (Coding and Programming)
 
 I built this application using the MVC method, along with a somewhat OOP coding style. The code should look neat and tidy, as well as easy to read.
 </p>
+
+---
 
 ### Current Features
 - A full user system.
