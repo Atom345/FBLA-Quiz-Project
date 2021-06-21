@@ -61,14 +61,10 @@ To promote user engagement the application provides a badge system. The more qui
 4. Ultra knowledge
 5. ALL KNOWING 
 <br>
-#### Install Wizard
-The application provides an install wizard to easily deploy it to a web or localhost server.
-<br>
-#### Simple & Mobile First
-The application design is simple and responsive, ready for mobile. The application is designed to run fast without any over complicated features or bloat.
-<br>
-#### Help Screen
-To help new users, the application provides a help area to provide the basics on how to use FBLA Quiz. The help area also shows how to install our app on PC.
+#### Other features:
+- Install wizard.
+- Help screen on dashboard.
+- Simple & Mobile Ready.
 
 ---
 
