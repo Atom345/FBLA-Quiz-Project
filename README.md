@@ -28,7 +28,7 @@ My quiz project for FBLA-PBL 2020-2021 (Coding and Programming)
 
 ---
 
-## Why PHP?
+### Why PHP?
 <p>Most people may question why I built this application using PHP, rather than C++ or Python. This is because the application can be easily deployed on a web server. Then, a user can easily access it through a URL. Also, many hosting services support PHP.
 
 I built this application using the MVC method, along with a somewhat OOP coding style. The code should look neat and tidy, as well as easy to read.
@@ -51,7 +51,7 @@ I built this application using the MVC method, along with a somewhat OOP coding 
 
 ---
 
-<h3>How to deploy for development:</h3>
+### How to deploy for development:
 
 1. Make sure you have Xampp installed: https://www.apachefriends.org/index.html.
 2. Once Xampp is done installing open the folder and navigate to xampp-control.exe.
