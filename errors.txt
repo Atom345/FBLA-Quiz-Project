@@ -1,11 +1,78 @@
-[14-Jan-2021 17:25:12 Europe/Berlin] PHP Warning:  Undefined variable $see_correct in C:\Users\Bryan\Desktop\localhost\htdocs\core\controllers\Questions.php on line 112
-[14-Jan-2021 17:34:57 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$see in C:\Users\Bryan\Desktop\localhost\htdocs\core\views\layout\questions\questions.phtml on line 13
-[14-Jan-2021 17:34:57 Europe/Berlin] PHP Fatal error:  Uncaught Error: Undefined constant "correct" in C:\Users\Bryan\Desktop\localhost\htdocs\core\views\layout\questions\questions.phtml:13
+[17-Jun-2021 23:56:38 Europe/Berlin] PHP Warning:  Undefined variable $questions_asked in C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\controllers\QuizInfo.php on line 34
+[17-Jun-2021 23:56:38 Europe/Berlin] PHP Warning:  Undefined variable $quiz_completed in C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\controllers\QuizInfo.php on line 35
+[17-Jun-2021 23:56:38 Europe/Berlin] PHP Warning:  Undefined variable $quiz_score in C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\controllers\QuizInfo.php on line 36
+[17-Jun-2021 23:56:38 Europe/Berlin] PHP Warning:  foreach() argument must be of type array|object, null given in C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\views\layout\info\info.phtml on line 44
+[17-Jun-2021 23:56:53 Europe/Berlin] PHP Warning:  Undefined variable $questions_asked in C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\controllers\QuizInfo.php on line 34
+[17-Jun-2021 23:56:53 Europe/Berlin] PHP Warning:  Undefined variable $quiz_completed in C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\controllers\QuizInfo.php on line 35
+[17-Jun-2021 23:56:53 Europe/Berlin] PHP Warning:  Undefined variable $quiz_score in C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\controllers\QuizInfo.php on line 36
+[17-Jun-2021 23:56:53 Europe/Berlin] PHP Warning:  foreach() argument must be of type array|object, null given in C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\views\layout\info\info.phtml on line 44
+[17-Jun-2021 23:58:03 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '? AND finished='true' LIMIT 1' at line 1 in C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\libs\Functions.php:390
 Stack trace:
-#0 C:\Users\Bryan\Desktop\localhost\htdocs\core\libs\View.php(54): require()
-#1 C:\Users\Bryan\Desktop\localhost\htdocs\core\controllers\Questions.php(120): FBLA\Views\View->run(Object(stdClass))
-#2 [internal function]: FBLA\Controllers\Questions->index()
-#3 C:\Users\Bryan\Desktop\localhost\htdocs\core\libs\App.php(50): call_user_func_array(Array, Array)
-#4 C:\Users\Bryan\Desktop\localhost\htdocs\index.php(7): FBLA\App->__construct()
+#0 C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\libs\Functions.php(390): mysqli->query('SELECT * FROM `...')
+#1 C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\controllers\QuizInfo.php(10): quiz_exists('222')
+#2 [internal function]: FBLA\Controllers\QuizInfo->index()
+#3 C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\libs\App.php(50): call_user_func_array(Array, Array)
+#4 C:\Users\Bryan\Desktop\localhost\htdocs\fbla\index.php(7): FBLA\App->__construct()
 #5 {main}
-  thrown in C:\Users\Bryan\Desktop\localhost\htdocs\core\views\layout\questions\questions.phtml on line 13
+  thrown in C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\libs\Functions.php on line 390
+[17-Jun-2021 23:58:45 Europe/Berlin] PHP Warning:  Undefined array key "content" in C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\views\layout\container.phtml on line 64
+[17-Jun-2021 23:59:57 Europe/Berlin] PHP Warning:  Undefined array key "content" in C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\views\layout\container.phtml on line 64
+[18-Jun-2021 00:10:21 Europe/Berlin] PHP Warning:  Undefined array key "content" in C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\views\layout\container.phtml on line 64
+[18-Jun-2021 18:36:04 Europe/Berlin] PHP Warning:  Undefined array key "content" in C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\views\layout\container.phtml on line 64
+[18-Jun-2021 18:41:19 Europe/Berlin] PHP Warning:  Undefined array key "content" in C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\views\layout\container.phtml on line 64
+[20-Jun-2021 00:06:05 Europe/Berlin] PHP Warning:  Undefined array key "content" in C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\views\layout\container.phtml on line 64
+[20-Jun-2021 17:26:26 Europe/Berlin] PHP Warning:  Undefined array key "radio_group" in C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\controllers\Questions.php on line 51
+[20-Jun-2021 17:26:26 Europe/Berlin] PHP Warning:  Undefined array key "select" in C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\controllers\Questions.php on line 53
+[20-Jun-2021 20:59:38 Europe/Berlin] PHP Warning:  Undefined variable $two_status in C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\controllers\Questions.php on line 106
+[20-Jun-2021 20:59:38 Europe/Berlin] PHP Warning:  Undefined variable $questions_asked in C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\controllers\QuizInfo.php on line 34
+[20-Jun-2021 20:59:38 Europe/Berlin] PHP Warning:  Undefined variable $quiz_completed in C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\controllers\QuizInfo.php on line 35
+[20-Jun-2021 20:59:38 Europe/Berlin] PHP Warning:  Undefined variable $quiz_score in C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\controllers\QuizInfo.php on line 36
+[20-Jun-2021 20:59:38 Europe/Berlin] PHP Warning:  foreach() argument must be of type array|object, null given in C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\views\layout\info\info.phtml on line 44
+[20-Jun-2021 21:02:55 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'answers_given' in 'field list' in C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\controllers\Questions.php:120
+Stack trace:
+#0 C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\controllers\Questions.php(120): mysqli->prepare('UPDATE `quiz_pr...')
+#1 [internal function]: FBLA\Controllers\Questions->index()
+#2 C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\libs\App.php(50): call_user_func_array(Array, Array)
+#3 C:\Users\Bryan\Desktop\localhost\htdocs\fbla\index.php(7): FBLA\App->__construct()
+#4 {main}
+  thrown in C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\controllers\Questions.php on line 120
+[21-Jun-2021 01:40:17 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "else", expecting "," or ";" in C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\views\layout\info\info.phtml on line 45
+[21-Jun-2021 01:40:29 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "endforeach" in C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\views\layout\info\info.phtml on line 46
+[21-Jun-2021 01:41:35 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "endforeach" in C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\views\layout\info\info.phtml on line 46
+[21-Jun-2021 01:53:41 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'fbla.quiz_progress' doesn't exist in C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\libs\Functions.php:390
+Stack trace:
+#0 C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\libs\Functions.php(390): mysqli->query('SELECT * FROM `...')
+#1 C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\controllers\QuizInfo.php(10): quiz_exists('229')
+#2 [internal function]: FBLA\Controllers\QuizInfo->index()
+#3 C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\libs\App.php(50): call_user_func_array(Array, Array)
+#4 C:\Users\Bryan\Desktop\localhost\htdocs\fbla\index.php(7): FBLA\App->__construct()
+#5 {main}
+  thrown in C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\libs\Functions.php on line 390
+[21-Jun-2021 01:53:53 Europe/Berlin] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_URL" in C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\init.php:20
+Stack trace:
+#0 C:\Users\Bryan\Desktop\localhost\htdocs\fbla\index.php(4): require_once()
+#1 {main}
+  thrown in C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\init.php on line 20
+[21-Jun-2021 02:09:04 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'fbla.users' doesn't exist in C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\libs\Functions.php:19
+Stack trace:
+#0 C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\libs\Functions.php(19): mysqli->prepare('SELECT * FROM `...')
+#1 C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\libs\UserData.php(15): get_user_data_from_email('admin@admin.com')
+#2 C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\views\layout\includes\menu.phtml(12): FBLA\UserData\UserData::userdata('email')
+#3 C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\libs\View.php(54): require('C:\\Users\\Bryan\\...')
+#4 C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\libs\Controller.php(42): FBLA\Views\View->run()
+#5 C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\libs\App.php(53): FBLA\Controllers\Controller->run()
+#6 C:\Users\Bryan\Desktop\localhost\htdocs\fbla\index.php(7): FBLA\App->__construct()
+#7 {main}
+  thrown in C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\libs\Functions.php on line 19
+[21-Jun-2021 02:09:13 Europe/Berlin] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_URL" in C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\init.php:20
+Stack trace:
+#0 C:\Users\Bryan\Desktop\localhost\htdocs\fbla\index.php(4): require_once()
+#1 {main}
+  thrown in C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\init.php on line 20
+[21-Jun-2021 02:09:40 Europe/Berlin] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_URL" in C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\init.php:20
+Stack trace:
+#0 C:\Users\Bryan\Desktop\localhost\htdocs\fbla\index.php(4): require_once()
+#1 {main}
+  thrown in C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\init.php on line 20
+[21-Jun-2021 02:33:55 Europe/Berlin] PHP Warning:  Undefined array key "content" in C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\views\layout\container.phtml on line 64
+[21-Jun-2021 02:36:25 Europe/Berlin] PHP Warning:  Undefined variable $two_status in C:\Users\Bryan\Desktop\localhost\htdocs\fbla\core\controllers\Questions.php on line 106

@@ -12,7 +12,7 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 if(file_exists(APP_PATH . 'config/config.php')){
     require_once APP_PATH . 'config/config.php';
 }else{
-    header("Location: ../install/index.php");
+    header("Location: ./install/index.php");
 }
 
 ini_set('error_log', ROOT_PATH . 'errors.txt');

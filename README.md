@@ -1,18 +1,25 @@
-# FBLA-Quiz-Project
-My project for the annual FBLA contest. (Coding and Programming)
+<center>
 
-<h1>⚠️ No longer maintained</h1>
-<p>As of March 1, 2021 this repo will no longer be maintained. Everthing should be stable and working for PHP 7.0+ and PHP 8.0+. I would not recommend cloning this repo if you are involved in FBLA-PBL, this could lead you to getting disqualified in a competetion.</p>
+## FBLA-Quiz-Project
+
+My quiz project for FBLA-PBL 2020-2021 (Coding and Programming)
+</center>
+
+<img src = "showcase.gif">
+
+### ⚠️ Heads Up!
+<p>This project will no longer be maintained when FBLA-PBL 2020-2021 ends. If you want to use this repo for personal use, everything should be stable and working for PHP 7.0+ . I would not recommend cloning this repo for an event, it could lead to getting disqualified.</p>
+
+---
 
 **Technologies Used:**
-- VSCode
+- Atom IDE
 - Git
-- Xxamp
-- PHPmyAdmin
-- Bootstrap
+- XAMPP Server
+- PHPmyAdmin (Database Tool)
 - jQuery
-- Github
-- Argon UI kit (https://www.creative-tim.com/product/argon-design-system)
+- GitHub
+- Materialize.css (Material design library)
 
 **Languages:**
 - PHP
@@ -20,19 +27,34 @@ My project for the annual FBLA contest. (Coding and Programming)
 - JavaScript
 - CSS
 - MySQL
-- JSON
 
-<h3>Things to be improved:</h3>
+---
 
-1. Website Design ✅
-2. Overall Website security.
-3. Add more questions. ✅
-4. Implement Google Recaptcha to prevent bot spam.
+## Why PHP?
+<p>Most people may question why I built this application using PHP, rather than C++ or Python. This is because the application can be easily deployed on a web server. Then, a user can easily access it through a URL. Also, many hosting services support PHP.
+
+I built this application using the MVC method, along with a somewhat OOP coding style. The code should look neat and tidy, as well as easy to read.
+</p>
+
+### Current Features
+- A full user system.
+- A database with 50 questions.
+- A PWA application. *(Cross compatible with Windows, Linux, Mac, Android, and iPhone)*
+- A simple and user friendly interface.
+- A help dialog on the dashboard.
+- A reward system with badges.
+- A full database backup feature for website admins.
+- A antispam time based honeypot to prevent bot spam.
+- An installation wizard to easily deploy the application on a web server.
+- SQL & XSS protection.
+- **and much more**
+
+---
 
 <h3>How to deploy for development:</h3>
 
-1. Make sure you have Xxamp installed: https://www.apachefriends.org/index.html.
-2. Once Xxamp is done installing open the folder and navigate to xxamp-control.exe.
+1. Make sure you have Xampp installed: https://www.apachefriends.org/index.html.
+2. Once Xampp is done installing open the folder and navigate to xampp-control.exe.
 3. Start the Apache module and the MySQL module.
 4. Clone this repo into `htdocs` folder using: `https://github.com/Atom345/FBLA-Quiz-Project.git`
 5. Visit your website URL to install. (http://localhost/)
@@ -42,4 +64,4 @@ My project for the annual FBLA contest. (Coding and Programming)
 <ul>
 <li>Email: admin@admin.com</li>
 <li>Password: admin</li>
-</ul> 
+</ul>

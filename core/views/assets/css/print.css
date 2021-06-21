@@ -1,0 +1,29 @@
+.certificate-container {
+    border: 20px solid #2196f3;
+    width: 750px;
+    height: 563px;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.marquee {
+    color: #e91e63;
+    font-size: 48px;
+    margin: 20px;
+}
+
+.assignment {
+    margin: 20px;
+}
+
+.person {
+    border-bottom: 2px solid black;
+    font-size: 32px;
+    font-style: italic;
+    margin: 20px auto;
+    width: 400px;
+}
+
+.reason {
+    margin: 20px;
+}

@@ -4,86 +4,122 @@ $quiz = get_five_recent_completed_quizes(\FBLA\UserData\UserData::userdata('user
 
 ?>
 <div class = "container">
-<div class = "row">
-<div class = "col-md-12">
-<div class = "card m-2">
-<div class = "card-header">
-    <div class = "card-title"><h4>Welcome back, <?php echo FBLA\UserData\UserData::userdata('name') ?></h4></div>
-</div>
-<div class = "card-body">
-<?php if($data->quiz_count > 4){ ?>
-<p>We have assembled some quiz stats for you:</p>
-<ul>
-<li>Number of quizes taken: <?php echo count_quizes(FBLA\UserData\UserData::userdata('user_id')) ?></li>
-<li>Failed Quizes: <?php echo count_failed_quizes(FBLA\UserData\UserData::userdata('user_id')) ?> (0/5)</li>
-<li>Total amount of questions: <?php echo count_global_questions(FBLA\UserData\UserData::userdata('user_id')) ?></li>
-<ul>
-<?php }else{ ?>
-    <div class="alert alert-primary" role="alert">
-        When you finish 5 quizes, we can start gauging your progress.
+  <div class="row">
+      <div class="col s12 m12">
+        <div class="card teal">
+          <div class="card-content white-text">
+            <span class="card-title">Welcome Back, <?php echo \FBLA\UserData\UserData::userdata('name') ?></span>
+            <?php if($data->quiz_count > 1): ?>
+            <p>Here is your latest account stats:</p>
+            <ul>
+              <li>Number of quizes taken: <?php echo count_quizes(FBLA\UserData\UserData::userdata('user_id')) ?></li>
+              <li>Failed Quizes: <?php echo count_failed_quizes(FBLA\UserData\UserData::userdata('user_id')) ?> (0/5)</li>
+              <li>Total amount of questions: <?php echo count_global_questions(FBLA\UserData\UserData::userdata('user_id')) ?></li>
+            </ul>
+          <?php else: ?>
+            <p>Take a quiz to view your stats.</p>
+          <?php endif ?>
+          </div>
+        </div>
+      </div>
+      <div class="col s12 m12">
+        <div class="card blue-grey white-text">
+          <div class="card-content">
+            <span class="card-title">Need Help?</span>
+            <p>Click below to open up the Help & FAQ.</p>
+          </div>
+            <div class = "card-action">
+                <button data-target="modal-tour" class = "btn white blue-grey-text modal-trigger"><i class = "material-icons left">help</i> Help</button>
+            </div>
+          </div>
+        </div>
+      <?php if(is_admin(\FBLA\UserData\UserData::userdata('user_id')) == true): ?>
+        <div class="col s12 m12">
+          <div class="card purple white-text">
+            <div class="card-content">
+              <span class="card-title">Full Database Backup</span>
+              <p>Click the button to create and download a database backup. This will backup all users, questions, and quiz progress.</p>
+            </div>
+              <div class = "card-action">
+                <form method = "POST">
+                  <button type = "submit" class = "btn white purple-text" name = "backup_database"><i class = "material-icons left">download</i> Download SQL backup</button>
+                </form>
+              </div>
+            </div>
+          </div>
+      <?php endif ?>
+      <div class="col s12 m12">
+        <div class="card ">
+          <div class="card-content">
+            <span class="card-title">Quizes Taken</span>
+            <p>View all of the quizes you finished here.</p>
+            <table class="striped">
+                <thead>
+                    <tr>
+                        <th>Score</th>
+                        <th>Date Taken</th>
+                        <th>Info</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                      $users_result = FBLA\Database\Database::$db->query("SELECT * FROM `quiz_progress` WHERE user_id=".\FBLA\UserData\UserData::userdata('user_id')." AND finished='true'");
+                      while($row = $users_result->fetch_assoc()){ ?>
+                         <tr>
+                        <td><?php echo $row['score'] ?></td>
+                        <td><?php echo $row['quiz_timestamp'] ?></td>
+                        <td><a class = "btn black" href = "<?php echo url('info/' . $row['quiz_id']) ?>">Quiz Info</a></td>
+                        </tr>
+                        <?php } ?>
+                </tbody>
+            </table>
+        </div>
+      </div>
     </div>
-<?php } ?>
 </div>
+
+<!-- Modal Structure -->
+ <div id = "modal-tour" class="modal">
+   <div class="modal-content">
+     <h4><i class = "material-icons">help</i> General FAQ</h4>
+     <b>What is FBLA Quiz?</b>
+     <p>FBLA Quiz is a quiz platform to introduce you to the bsics of FBLA. Each quiz you take is five questions long. The more quizes you take, the more badges you earn!</p>
+     <br>
+     <b>What information is collected?</b>
+     <p>Upon creating a new account, we only ask for your name and email. We never sell your data to third-party vendors. Our code is open source on GitHub for transparency.</p>
+     <br>
+     <b>How do I download your app?</b>
+     <p>Our app is compatiable across all device platforms. You can download our app by going to our website, and following the steps below.</p>
+     <img src = "<?php echo SITE_URL . ASSETS_PATH . 'img/fbla_app.gif' ?>">
+     <br>
+     <hr>
+     <br>
+     <h4><i class = "material-icons">lock</i> Security</h4>
+     <p>We take the security of our application seriously. We have made sure that your persoanl email and name is safe and secure againt spam bots, brute force, XSS and SQL injection attacks. If you believe your information was leaked, contact us, and we will attempt to solve the problem.</p>
+     <hr>
+     <br>
+     <h4><i class = "material-icons">list</i> How to use?</h4>
+     <ol>
+       <li>Click the hamburger menu icon in the top-left hand corner.</li>
+       <li>Click "New Quiz" to create a new quiz.</li>
+       <li>You should now find yourself on the questions page!</li>
+     </ol>
+
+   <p>If you need any additional support, feel free to conact us via email.</p>
+   </div>
+   <div class="modal-footer">
+     <a href="#!" class="modal-close waves-effect waves-green btn black">Close</a>
+   </div>
+ </div>
+
+
 </div>
-<?php if(is_admin(FBLA\UserData\UserData::userdata('user_id')) == true){ ?>
-<div class = "card m-3">
-<div class = "card-header">
-<div class = "card-title"><h4>Basic Admin Options</h4></div>
-</div>
-<div class = "card-body">
-<div class = "row">
-<div class = "col-md-4">
-<div class = "card">
-<div class = "card-body">
-<div class = "form-grup">
-<form method = "post">
-<button class = "btn btn-info" type = "submit" name = "backup_database">Backup Database</button>
-</form>
-<br>
-<small class = "text-muted">Backing up your database will create a downloadable copy for which you can save.</small>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<?php } ?>
-<div class = "card m-3">
-<div class = "card-header">
-<div class = "card-title"><h4>Badges</h4></div>
-</div>
-<div class = "card-body">
-<div class = "card-text">Badges can be earned by taking more quizes and leveling up. Grow your knowlegde about FBLA and earn bragging rights.</div>
-<br>
-<?php echo $data->badge ?>
-</div>
-</div>
-<div class = "card m-3">
-<div class = "card-header">
-<div class = "card-title"><h4>Quiz List</h4></div>
-</div>
-<div class = "card-body">
-<table class="table">
-    <thead>
-        <tr>
-            <th>Score</th>
-            <th>Date Taken</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-	        $users_result = FBLA\Database\Database::$db->query("SELECT * FROM `quiz_progress` WHERE user_id=".\FBLA\UserData\UserData::userdata('user_id')."");
-	        while($row = $users_result->fetch_assoc()){ ?>
-             <tr>
-            <td><?php echo $row['score'] ?></td>
-            <td><?php echo $row['quiz_timestamp'] ?></td>
-            </tr>
-            <?php } ?>
-    </tbody>
-</table>
-</div>
-</div>
-</div>
-</div>
-</div>
+<script>
+$(document).ready(function(){
+    //initialize all modals
+    $('.modal').modal();
+
+    $('.modal-trigger').leanModal();
+  });
+
+</script>

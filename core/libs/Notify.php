@@ -1,9 +1,9 @@
 <?php
 
-/* 
+/*
 
 This is the notification file. Its job is to display
-critical information, such as errors and warnings. 
+critical information, such as errors and warnings.
 
 */
 
@@ -17,12 +17,12 @@ function notify() {
             foreach($_SESSION[$type] as $message) {
                 $csstype = ($type == 'error') ? 'error' : $type;
 
-                /* Output a Bootstrap alert. */
+                /* Output a alert. */
                 echo '
-                <div class="alert alert-danger show m-2" role="alert">
-                '.$message.'
-                </div>
-				';
+                <script>
+                   M.toast({html: "' . $message . '", classes: "' . $csstype . ' rounded"});
+                </script>
+				        ';
             }
            unset($_SESSION[$type]); //Unset the notification message, so it does not show up again.
         }

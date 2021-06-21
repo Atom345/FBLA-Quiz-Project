@@ -1,6 +1,6 @@
 <?php
 
-/* 
+/*
 
 This is the controller file. Its job is to load and display all
 requested view files and containers.
@@ -37,11 +37,11 @@ class Controller {
 
         if(Routing::$path == '') {
 
-            /* Load the navbar file | layout/partials/menu.phtml */
+            /* Load the navbar file | layout/includes/menu.phtml */
             $menu = new \FBLA\Views\View('includes/menu', (array) $this);
             $this->addViewContent('menu', $menu->run());
-            
-            /* Load the footer file | layout/partials/footer.phtml */
+
+            /* Load the footer file | layout/includes/footer.phtml */
             $footer = new \FBLA\Views\View('includes/footer', (array) $this);
             $this->addViewContent('footer', $footer->run());
 

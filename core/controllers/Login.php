@@ -16,6 +16,12 @@ class Login extends Controller{
             $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL); //Filter the provided email.
             $password = filter_var($_POST['password'], FILTER_DEFAULT); //Filter the provided password.
 
+            /* Spam bot detection */
+            if(check_timestamp($_POST['fax_number']) == false){
+                $_SESSION['error'][] = "Could not login.";
+            }
+
+            if(empty($_SESSION['error'])){
             /* Check user password based on provided email */
             $query = "SELECT pass FROM users WHERE email=?";
 
@@ -25,9 +31,9 @@ class Login extends Controller{
             $result = $stmt->get_result();
 
             while($row = $result->fetch_assoc()){
-                $fetched_user = $row; 
+                $fetched_user = $row;
             }
-         
+
             /* Verify the given password */
             if(password_verify($password, $fetched_user['pass'])){
                 /* If the `loggedin` cookie is not set, create the cookie with the encrypted users email */
@@ -40,6 +46,8 @@ class Login extends Controller{
             }else{
               $_SESSION['error'][] = "Please check your login details."; //If the login details are not correct.
             }
+
+          }
 
         }
 

@@ -30,24 +30,31 @@ class Register extends Controller{
                 $_SESSION['error'][] = "Your provided passwords do not match.";
             }
 
-            /* Hash the given password using password_hash() and insert user into database. */
-            $hashed_password = password_hash($repeat_password, PASSWORD_DEFAULT);
-            $false = "false";
-            $stmt = \FBLA\Database\Database::$db->prepare('INSERT INTO users (`email`, `name`, `pass`, `admin`) VALUES (?, ?, ?, ?)'); 
-            $stmt->bind_param("ssss", $email, $name, $hashed_password, $false);
-            $stmt->execute();
-            $stmt->close();
+            /* Spam bot detection */
+            if(check_timestamp($_POST['fax_number']) == false){
+                $_SESSION['error'][] = "Could not create account.";
+            }
 
-            /* Set the user `loggedin` cookie with the email provided and redirect to dashboard. */
-            $token_code = master_key('encrypt', $email);
-            setcookie('loggedin', $token_code, time()+60*60*24*30);
-            redirect('dashboard');
+            if(empty($_SESSION['error'])){
+              /* Hash the given password using password_hash() and insert user into database. */
+              $hashed_password = password_hash($repeat_password, PASSWORD_DEFAULT);
+              $false = "false";
+              $stmt = \FBLA\Database\Database::$db->prepare('INSERT INTO users (`email`, `name`, `pass`, `admin`) VALUES (?, ?, ?, ?)');
+              $stmt->bind_param("ssss", $email, $name, $hashed_password, $false);
+              $stmt->execute();
+              $stmt->close();
+
+              /* Set the user `loggedin` cookie with the email provided and redirect to dashboard. */
+              $token_code = master_key('encrypt', $email);
+              setcookie('loggedin', $token_code, time()+60*60*24*30);
+              redirect('dashboard');
+            }
         }else{
             $_SESSION['error'][] = "Please fill in all fields!"; //Check if all fields are filled in.
         }
 
         }
-        
+
         $view = new \FBLA\Views\View('register/register', (array) $this);
 
         $this->addViewContent('content', $view->run());

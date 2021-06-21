@@ -1,27 +1,17 @@
-<?php notify() ?>
 <div class = "container">
 <form method = "post">
 <div class = "row">
 
 <?php foreach($data->questions as $item) { ?>
-<div class = "col-md-12 m-2">
-   <div class = "card">
-        <div class = "card-header">
-            <div class = "card-title"><h4><?php echo $item['question_ask'] ?></h4></div>
-        </div>
-
-
-        <div class = "card-body">
-        <?php echo $item['question_content'] ?>
-        </div>
-
-        <div class = "card-footer border-0">
-        <div class="alert alert-default" role="alert">
-           <i class = "fas fa-question-circle"></i> <b>Hint:</b> <?php echo $item['question_hint'] ?>
-        </div>
-        </div>
-
-   </div>
+<div class="col s12 m12">
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title"><?php echo $item['question_ask'] ?></span>
+      <p><?php echo $item['question_hint'] ?></p>
+      <br>
+      <?php echo $item['question_content'] ?>
+    </div>
+  </div>
 </div>
 <?php } ?>
 <button class = "btn btn-primary m-3" type = "submit" name = "submit_quiz">Check Quiz</button>

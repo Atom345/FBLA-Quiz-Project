@@ -1,0 +1,94 @@
+<div class = "conatiner">
+   <div class="row" style = "margin-top: 50px;">
+      <div class="col s7 push-s6">
+         <div id = "certificate">
+            <div class="certificate-container">
+               <center>
+                  <img src = "<?php echo SITE_URL . ASSETS_PATH . 'img/fbla-logo.png' ?>">
+                  <div class="marquee">
+                     Certificate of Completion
+                  </div>
+                  <div class="assignment">
+                     This certificate is presented to
+                  </div>
+                  <div class="person">
+                     <?php echo \FBLA\UserData\UserData::userdata('name') ?>
+                  </div>
+                  <div class="reason">
+                     for completing one FBLA Quiz on
+                     <div id = "time_completed"></div>
+                     with a score of <?php echo $data->quiz_score ?>
+                  </div>
+               </center>
+            </div>
+         </div>
+      </div>
+      <div class="col s5 pull-s6">
+         <div class = "card teal white-text">
+            <div class="card-content white-text">
+               <span class="card-title">Quiz Completed</span>
+               <p>Click the button below to print your certificate for completing a quiz!</p>
+            </div>
+            <div class="card-action">
+               <button onclick = 'print("certificate");' class="waves-effect waves-light btn white teal-text"><i class="material-icons left">card_giftcard</i>Print</button>
+            </div>
+         </div>
+         <div class = "card">
+            <div class="card-content">
+               <span class="card-title">Quiz Stats</span>
+               <ul>
+               <li>Score: <?php echo $data->quiz_score ?></li>
+               <li>Time Completed: <?php echo $data->quiz_time ?></li>
+               <ul>
+               <div class="collection">
+                  <?php foreach($data->question_data as $key => $value): ?>
+                  <?php
+                    switch($value){
+                      case 1:
+                          $csstype = "green";
+                          $text = "Correct";
+                      break;
+                      case 0:
+                          $csstype = "red";
+                          $text = "Incorrect";
+                      break;
+                      }
+                  ?>
+                  <a class="collection-item"><?php echo $key ?> <span class="new badge <?php echo $csstype ?>" data-badge-caption="<?php echo $text ?>"></span></a>
+                  <?php endforeach ?>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<script>
+   var time = new Date();
+   var date = time.getFullYear()+'-'+(time.getMonth()+1)+'-'+time.getDate();
+   document.getElementById("time_completed").innerHTML = date;
+
+   function sleep (time) {
+     return new Promise((resolve) => setTimeout(resolve, time));
+   }
+
+   function print(div)
+   {
+
+    // Create seperate browser window.
+    var printwindow = window.open('', 'PRINT', 'height=800,width=1200');
+
+    // Inject HTML and styles
+    printwindow.document.write('<html><head>');
+    printwindow.document.write('<link rel="stylesheet" href="<?php echo SITE_URL . ASSETS_PATH . 'css/print.css' ?>" type="text/css" />');
+    printwindow.document.write('</head><body >');
+    printwindow.document.write(document.getElementById(div).innerHTML);
+    printwindow.document.write('</body></html>');
+
+    /* Print and close seperate window, this is to preserve styles. */
+    sleep(1000).then(() => {
+      printwindow.print();
+      printwindow.close();
+    });
+
+    }
+</script>

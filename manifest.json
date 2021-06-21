@@ -1,0 +1,22 @@
+{
+    "name":"FBLA Quiz",
+    "short_name":"FBLA",
+    "start_url":"http://localhost/fbla/",
+    "display":"standalone",
+    "background_color":"#fff",
+    "theme_color":"black",
+    "scope": "http://localhost/fbla/",
+    "description":"A simple PWA for FBLA Quiz on the go.",
+    "icons":[
+    {
+    "src":"media/icon192.png",
+    "sizes":"192x192",
+    "type":"image/png"
+    },
+    {
+    "src":"media/icon512png",
+    "sizes":"512x512",
+    "type":"image/png"
+    }
+  ]
+}

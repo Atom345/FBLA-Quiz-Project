@@ -1,22 +1,25 @@
 <?php notify() ?>
-<div class = "container">
-<div clas = "row">
-<div class = "col-md-6 offset-3">
-<div class="login-form m-5">
-    <form method="post">
-        <h2 class="text-center">Log in</h2>       
-        <div class="form-group">
-            <input type="email" name = "email" class="form-control" placeholder="Email" required="required">
-        </div>
-        <div class="form-group">
-            <input type="password" name = "password" class="form-control" placeholder="Password" required="required">
-        </div>
-        <div class="form-group">
-            <button type="submit" name = "login" class="btn btn-primary btn-block">Log in</button>
-        </div>  
+<div class="row container padtop80" style="min-height:100vh;margin-top:100px;">
+   <div class="col s12 padtop40">
+    <div class="col m6 offset-m3 s12 z-depth-1 padtop10 ">
+     <div class="lid">
+      <form method = "post">
+      <div class="input-field col s12">
+       <input placeholder="johnDoe345@mail.com" id="email" type="text" name = "email" class="validate" />
+       <label for="first_name">Email</label>
+      </div>
+      <div class="input-field col s12">
+       <input placeholder="123456" id="password1" type="password" name = "password" class="validate" />
+       <label for="password1">Password</label>
+      </div>
+      <div class="input-field col s12 fax_number">
+      <input type = "text" name = "fax_number" value = "<?php echo create_encoded_timestamp() ?>" tabindex="-1" autocomplete="off">
+      </div>
+      <p class="padleft10 remx">
+        <button type = "submit" name = "login" class = "blue btn">Login</button>
+      </p>
     </form>
-    <p class="text-center">Dont have an account? <a href="<?php echo url('register') ?>">Create an Account</a>.</p>
-</div>
-</div>
-</div>
-</div>
+     </div>
+    </div>
+   </div>
+  </div>

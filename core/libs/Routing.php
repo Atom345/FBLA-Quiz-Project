@@ -1,8 +1,8 @@
 <?php
 
-/* 
+/*
 
-This is the router. Its job is to specify the Controller class for each 
+This is the router. Its job is to specify the Controller class for each
 key based on the URL path. If $controller_key == 'index' then it loads the `Index` Controller
 class.
 
@@ -12,14 +12,14 @@ namespace FBLA\Routing; //Set the namespace
 
 class Routing {
 
-    /* 
+    /*
 
     Specify the container file (views/layout/container.phtml)
     This file will be responsible for loading all CSS and JavaScript needed.
 
     */
 
-    public static $params = []; 
+    public static $params = [];
     public static $path = ''; //Default path before load
     public static $controller_key = 'index'; //Default controller key
     public static $controller = 'Index'; //Idex controller class
@@ -34,7 +34,7 @@ class Routing {
     public static $routes = [
 
         '' => [
-		
+
             'index' => [ //Index contoller key
                 'controller' => 'Index' //Index controller class
             ],
@@ -45,10 +45,6 @@ class Routing {
 
             'questions' => [
                 'controller' => 'Questions'
-            ],
-
-            'reward' => [
-                'controller' => 'Reward'
             ],
 
             'login' => [
@@ -67,6 +63,10 @@ class Routing {
                 'controller' => 'Dashboard'
             ],
 
+            'info' => [
+              'controller' => 'QuizInfo'
+            ]
+
         ]
     ];
 
@@ -75,10 +75,10 @@ class Routing {
 
     Look at the path after the domain to see what contoller to load using `$_GET['FBLA']`
 
-    https://example.com/login 
+    https://example.com/login
 
     In the example above, login would be the controller key, and the ccontroller class `Login` would
-    be created. 
+    be created.
 
     */
     public static function parse_url() {
@@ -90,7 +90,6 @@ class Routing {
         }
 
         self::$params = $params;
-
         return $params;
 
     }

@@ -4,7 +4,7 @@
 
 function get_random_question_type($question_type){
 
-    $stmt = FBLA\Database\Database::$db->prepare('SELECT * FROM `questions` WHERE question_type=? order by RAND() LIMIT 1'); 
+    $stmt = FBLA\Database\Database::$db->prepare('SELECT * FROM `questions` WHERE question_type=? order by RAND() LIMIT 1');
     $stmt->bind_param("s", $question_type);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -34,20 +34,20 @@ function get_correct_answer_from_questions($question_number_set){
         $answers_seperated[0], //Question One
         $answers_seperated[1], //Question Two
         $answers_seperated[2], //Question Three
-        $answers_seperated[3], //Question Four 
-        $answers_seperated[4] //Question Five
+        $answers_seperated[3], //Question Four
+        $answers_seperated[4]  //Question Five
     );
 
     $in    = str_repeat('?,', count($answers_array) - 1) . '?';
-    $sql   = "SELECT `correct_value` FROM questions WHERE question_id IN ($in)"; 
+    $sql   = "SELECT `correct_value` FROM questions WHERE question_id IN ($in)";
     $stmt  = FBLA\Database\Database::$db->prepare($sql);
 
     $types = str_repeat('s', count($answers_array));
-    $stmt->bind_param($types, ...$answers_array); 
+    $stmt->bind_param($types, ...$answers_array);
 
     $stmt->execute();
     $result = $stmt->get_result();
-    $data = $result->fetch_all(MYSQLI_ASSOC); 
+    $data = $result->fetch_all(MYSQLI_ASSOC);
     return $data;
 }
 
@@ -70,7 +70,7 @@ function is_logged_in(){
 
 function user_has_unfinished_quiz($user_id){
     /* Set DESC in mysql query to get latest result */
-    $stmt = FBLA\Database\Database::$db->prepare('SELECT * FROM `quiz_progress` WHERE user_id=? ORDER BY `quiz_timestamp` DESC'); 
+    $stmt = FBLA\Database\Database::$db->prepare('SELECT * FROM `quiz_progress` WHERE user_id=? ORDER BY `quiz_timestamp` DESC');
     $stmt->bind_param("s", $user_id);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -90,7 +90,7 @@ function user_has_unfinished_quiz($user_id){
 }
 
 function get_quiz_data($quiz_id){
-    $stmt = FBLA\Database\Database::$db->prepare('SELECT * FROM `quiz_progress` WHERE quiz_id=? ORDER BY `quiz_timestamp` LIMIT 1'); 
+    $stmt = FBLA\Database\Database::$db->prepare('SELECT * FROM `quiz_progress` WHERE quiz_id=? ORDER BY `quiz_timestamp` LIMIT 1');
     $stmt->bind_param("s", $quiz_id);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -103,7 +103,7 @@ function get_quiz_data($quiz_id){
 
 function send_questions($payload){
     $questions_seperated = explode(",", $payload);
-    
+
     $questions_array = array(
         $questions_seperated[0],
         $questions_seperated[1],
@@ -113,17 +113,17 @@ function send_questions($payload){
     );
 
     $in    = str_repeat('?,', count($questions_array) - 1) . '?';
-    $sql   = "SELECT * FROM questions WHERE question_id IN ($in)"; 
+    $sql   = "SELECT * FROM questions WHERE question_id IN ($in)";
     $stmt  = FBLA\Database\Database::$db->prepare($sql);
 
     $types = str_repeat('s', count($questions_array));
-    $stmt->bind_param($types, ...$questions_array); 
+    $stmt->bind_param($types, ...$questions_array);
 
     $stmt->execute();
     $result = $stmt->get_result();
-    $data = $result->fetch_all(MYSQLI_ASSOC);   
+    $data = $result->fetch_all(MYSQLI_ASSOC);
     return $data;
-  
+
 }
 
 function generate_quiz_number_set(){
@@ -173,7 +173,7 @@ function master_key($action, $string) {
     $secret_iv = "TfG7qrqC6ZZqhKhC";
 
     $key = hash('sha256', $secret_key);
-    
+
     $iv = substr(hash('sha256', $secret_iv), 0, 16);
 
     if ( $action == 'encrypt' ) {
@@ -193,23 +193,23 @@ function get_time($timezone = "MST"){
     $tz_obj = new DateTimeZone($timezone);
     $today = new DateTime("now", $tz_obj);
     $today_formatted = $today->format('m-d-y');
-    
+
     $date = new DateTime("now", new DateTimeZone($timezone));
-    return $date->format('Y-m-d H:i:s');	
-    
+    return $date->format('Y-m-d H:i:s');
+
 }
 
 function get_five_recent_completed_quizes($user_id){
-    $stmt = FBLA\Database\Database::$db->prepare("SELECT * FROM `quiz_progress` WHERE user_id=? and finished='true' ORDER BY `quiz_timestamp` DESC LIMIT 5"); 
+    $stmt = FBLA\Database\Database::$db->prepare("SELECT * FROM `quiz_progress` WHERE user_id=? and finished='true' ORDER BY `quiz_timestamp` DESC LIMIT 5");
     $stmt->bind_param("s", $user_id);
     $stmt->execute();
     $result = $stmt->get_result();
-    $data = $result->fetch_all(MYSQLI_ASSOC); 
+    $data = $result->fetch_all(MYSQLI_ASSOC);
     return $data;
 }
 
 function get_quiz_data_from_user_id($user_id){
-    $stmt = FBLA\Database\Database::$db->prepare("SELECT * FROM `quiz_progress` WHERE user_id=? ORDER BY `quiz_timestamp` LIMIT 1"); 
+    $stmt = FBLA\Database\Database::$db->prepare("SELECT * FROM `quiz_progress` WHERE user_id=? ORDER BY `quiz_timestamp` LIMIT 1");
     $stmt->bind_param("s", $user_id);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -220,7 +220,7 @@ function get_quiz_data_from_user_id($user_id){
 }
 
 function get_recent_quiz_id_from_user_id($user_id){
-    $stmt = FBLA\Database\Database::$db->prepare("SELECT * FROM `quiz_progress` WHERE user_id=? ORDER BY `quiz_timestamp` LIMIT 1"); 
+    $stmt = FBLA\Database\Database::$db->prepare("SELECT * FROM `quiz_progress` WHERE user_id=? ORDER BY `quiz_timestamp` LIMIT 1");
     $stmt->bind_param("s", $user_id);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -231,7 +231,7 @@ function get_recent_quiz_id_from_user_id($user_id){
 }
 
 function count_quizes($user_id){
-    $stmt = FBLA\Database\Database::$db->prepare("SELECT COUNT(*) AS quizes FROM `quiz_progress` WHERE user_id=? and finished='true'"); 
+    $stmt = FBLA\Database\Database::$db->prepare("SELECT COUNT(*) AS quizes FROM `quiz_progress` WHERE user_id=? and finished='true'");
     $stmt->bind_param("s", $user_id);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -243,7 +243,7 @@ function count_quizes($user_id){
 }
 
 function count_failed_quizes($user_id){
-    $stmt = FBLA\Database\Database::$db->prepare("SELECT COUNT(*) AS quizes FROM `quiz_progress` WHERE user_id=? and finished='true' and score='0/5'"); 
+    $stmt = FBLA\Database\Database::$db->prepare("SELECT COUNT(*) AS quizes FROM `quiz_progress` WHERE user_id=? and finished='true' and score='0/5'");
     $stmt->bind_param("s", $user_id);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -266,7 +266,7 @@ function count_global_questions($user_id){
 }
 
 function get_most_recent_score($user_id){
-    $stmt = FBLA\Database\Database::$db->prepare("SELECT * FROM `quiz_progress` WHERE user_id=? ORDER BY `quiz_timestamp` DESC LIMIT 1"); 
+    $stmt = FBLA\Database\Database::$db->prepare("SELECT * FROM `quiz_progress` WHERE user_id=? ORDER BY `quiz_timestamp` DESC LIMIT 1");
     $stmt->bind_param("s", $user_id);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -277,13 +277,13 @@ function get_most_recent_score($user_id){
 }
 
 function is_admin($user_id){
-    $stmt = FBLA\Database\Database::$db->prepare("SELECT * FROM `users` WHERE user_id=? LIMIT 1"); 
+    $stmt = FBLA\Database\Database::$db->prepare("SELECT * FROM `users` WHERE user_id=? LIMIT 1");
     $stmt->bind_param("s", $user_id);
     $stmt->execute();
     $result = $stmt->get_result();
 
     while($row = $result->fetch_assoc()) {
-        if($row['admin'] == 1){
+        if($row['admin'] == "true"){
             return true;
         }else{
             return false;
@@ -295,11 +295,11 @@ function backup_database($host,$user,$pass,$name, $tables=false, $backup_name=fa
 {
     /* Set time limit and encoding then connect */
 	set_time_limit(3000); FBLA\Database\Database::$db->select_db($name); FBLA\Database\Database::$db->query("SET NAMES 'utf8'");
-    $queryTables = FBLA\Database\Database::$db->query('SHOW TABLES'); while($row = $queryTables->fetch_row()) { $target_tables[] = $row[0]; }	if($tables !== false) { $target_tables = array_intersect( $target_tables, $tables); } 
+    $queryTables = FBLA\Database\Database::$db->query('SHOW TABLES'); while($row = $queryTables->fetch_row()) { $target_tables[] = $row[0]; }	if($tables !== false) { $target_tables = array_intersect( $target_tables, $tables); }
     $content = "SET SQL_MODE = \"NO_AUTO_VALUE_ON_ZERO\";\r\nSET time_zone = \"+00:00\";\r\n\r\n\r\n/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;\r\n/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;\r\n/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;\r\n/*!40101 SET NAMES utf8 */;\r\n--\r\n-- Database: `".$name."`\r\n--\r\n\r\n\r\n";
 	foreach($target_tables as $table){
-		if (empty($table)){ continue; } 
-		$result	= FBLA\Database\Database::$db->query('SELECT * FROM `'.$table.'`');  	$fields_amount=$result->field_count;  $rows_num=FBLA\Database\Database::$db->affected_rows; 	$res = FBLA\Database\Database::$db->query('SHOW CREATE TABLE '.$table);	$TableMLine=$res->fetch_row(); 
+		if (empty($table)){ continue; }
+		$result	= FBLA\Database\Database::$db->query('SELECT * FROM `'.$table.'`');  	$fields_amount=$result->field_count;  $rows_num=FBLA\Database\Database::$db->affected_rows; 	$res = FBLA\Database\Database::$db->query('SHOW CREATE TABLE '.$table);	$TableMLine=$res->fetch_row();
 		$content .= "\n\n".$TableMLine[1].";\n\n";   $TableMLine[1]=str_ireplace('CREATE TABLE `','CREATE TABLE IF NOT EXISTS `',$TableMLine[1]);
 		for ($i = 0, $st_counter = 0; $i < $fields_amount;   $i++, $st_counter=0) {
             /* Fetch all the rows */
@@ -322,6 +322,77 @@ function get_correct_answer_response($answer, $post){
     }else{
         return false;
     }
+}
+
+function get_gravatar($email, $s = 80, $d = 'mp', $r = 'g', $img = false, $atts = array() ) {
+    $url = 'https://www.gravatar.com/avatar/';
+    $url .= md5( strtolower( trim( $email ) ) );
+    $url .= "?s=$s&d=$d&r=$r";
+    if ( $img ) {
+        $url = '<img src="' . $url . '"';
+        foreach ( $atts as $key => $val )
+            $url .= ' ' . $key . '="' . $val . '"';
+        $url .= ' />';
+    }
+    return $url;
+}
+
+function get_badge(){
+    $quiz_count = count_quizes(\FBLA\UserData\UserData::userdata('user_id'));
+
+    /* Default Badge */
+    $badge = '<span class="new badge blue" data-badge-caption="Beginner"></span>';
+
+    if($quiz_count >= '3'){
+        $badge = '<span class="new badge pink darken-2" data-badge-caption="Average"></span>';
+    }
+
+    if($quiz_count >= '8'){
+        $badge = '<span class="new badge green darken-1" data-badge-caption="Master"></span>';
+    }
+
+    if($quiz_count >= '15'){
+        $badge = '<span class="new badge orange darken-1" data-badge-caption="Ultra knowledge"></span>';
+    }
+
+    if($quiz_count >= '24'){
+        $badge = '<span class="new badge purple accent-4" data-badge-caption="ALL KNOWING"></span>';
+    }
+
+    return $badge;
+}
+
+function create_encoded_timestamp() {
+    return base64_encode(json_encode(time()*5594));
+}
+
+function check_timestamp($value) {
+     $timetrap = json_decode(base64_decode($value));
+     if (is_numeric($timetrap) && time() - ($timetrap/5594) > 1) {
+        return true;
+      } else {
+        return false;
+    }
+}
+
+function get_question_data_from_id($question_id){
+  $stmt = FBLA\Database\Database::$db->prepare("SELECT * FROM `questions` WHERE question_id=? LIMIT 1");
+  $stmt->bind_param("s", $question_id);
+  $stmt->execute();
+  $result = $stmt->get_result();
+
+  while($row = $result->fetch_assoc()) {
+      return $row;
+  }
+}
+
+function quiz_exists($id){
+  $query = FBLA\Database\Database::$db->query("SELECT * FROM `quiz_progress` WHERE quiz_id={$id} AND finished='true' LIMIT 1");
+  if(mysqli_num_rows($query) > 0){
+    return true;
+  }else{
+    return false;
+  }
 }
 
 ?>
