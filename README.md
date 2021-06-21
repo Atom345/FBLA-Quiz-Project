@@ -1,23 +1,23 @@
-<center>
-
 ## FBLA-Quiz-Project
 
-My quiz project for FBLA-PBL 2020-2021 (Coding and Programming)
-</center>
+My quiz project for FBLA-PBL 2020-2021 (Coding and Programming) Built with the MVC method and somewhat of a OOP coding style.
 
+---
 ### ⚠️ Heads Up!
 <p>This project will no longer be maintained when FBLA-PBL 2020-2021 ends. If you want to use this repo for personal use, everything should be stable and working for PHP 7.0+ . I would not recommend cloning this repo for an event, it could lead to getting disqualified.</p>
 
 ---
 
 **Technologies Used:**
-- Atom IDE
+- [Atom IDE](https://atom.io/)
 - Git
-- XAMPP Server
-- PHPmyAdmin (Database Tool)
+- [XAMPP Server](https://www.apachefriends.org/)
+- [PHPmyAdmin](https://www.phpmyadmin.net/)
 - jQuery
 - GitHub
-- Materialize.css (Material design library)
+- [Materialize.css](https://materializecss.com/)
+- [Google Material Design Specs](https://material.io/design/guidelines-overview)
+- [MVC Method](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller)
 
 **Languages:**
 - PHP
@@ -36,18 +36,40 @@ I built this application using the MVC method, along with a somewhat OOP coding 
 
 ---
 
-### Current Features
-- A full user system.
-- A database with 50 questions.
-- A PWA application. *(Cross compatible with Windows, Linux, Mac, Android, and iPhone)*
-- A simple and user friendly interface.
-- A help dialog on the dashboard.
-- A reward system with badges.
-- A full database backup feature for website admins.
-- A antispam time based honeypot to prevent bot spam.
-- An installation wizard to easily deploy the application on a web server.
-- SQL & XSS protection.
-- **and much more**
+### Key Features
+Thses are some of the key features in our application.
+
+#### Full User Syetem
+There is login and register functionality in the application. The login and register proccess are kept safe from brute force attacks, XSS, and SQL injection. All user passwords are hashed with the PHP built in `password_hash()` function. All users can change there profile picture using [Gravatar](https://gravatar.com), which is a profile image API.
+<br>
+#### Cross-Compatable PWA 
+Read more about PWA applications here: [Mozilla Article](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps)
+
+Our application provides a PWA app for Android, Iphone, Mac, Windows, and Linux. This lets the user use FBLa quiz on the go.
+<br>
+#### Security
+The application is protected from SQL Injection, brute force attacks, and XSS. To stop brute force attacks, the application uses a time based honeypot to catch bots and prevent them from signing up or logging in.
+<br>
+#### Database Backup
+The application admin can download a full databse backup at anytime through the user dashboard. It might be helpful to add a cron job for backups in the future.
+<br>
+#### Badge System
+To promote user engagement the application provides a badge system. The more quizes a user takes, the badge level increases. The badge levels are listed below.
+1. Beginner
+2. Average
+3. Master
+4. Ultra knowledge
+5. ALL KNOWING 
+
+<br>
+#### Install Wizard
+The application provides an install wizard to easily deploy it to a web or localhost server.
+<br>
+#### Simple & Mobile First
+The application design is simple and responsive, ready for mobile. The application is designed to run fast without any over complicated features or bloat.
+<br>
+#### Help Screen
+To help new users, the application provides a help area to provide the basics on how to use FBLA Quiz. The help area also shows how to install our app on PC.
 
 ---
 
