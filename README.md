@@ -53,18 +53,22 @@ The application is protected from SQL Injection, brute force attacks, and XSS. T
 #### Database Backup
 The application admin can download a full databse backup at anytime through the user dashboard. It might be helpful to add a cron job for backups in the future.
 <br>
+#### Help Screen
+The application provides a basic support screen on the user dashboard to help aid new people.
+<br>
+#### Install Wizard
+To help deploy the apllication quickly, it provides an easy to use install wizard.
+<br>
+#### Simple & Mobile Ready
+The application is designed to be fast and mobile ready, without any over-complicated features or bloat.
+<br>
 #### Badge System
 To promote user engagement the application provides a badge system. The more quizes a user takes, the badge level increases. The badge levels are listed below.
 1. Beginner
 2. Average
 3. Master
 4. Ultra knowledge
-5. ALL KNOWING 
-<br>
-#### Other features:
-- Install wizard.
-- Help screen on dashboard.
-- Simple & Mobile Ready.
+5. ALL KNOWING
 
 ---
 
