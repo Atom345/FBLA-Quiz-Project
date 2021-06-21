@@ -60,7 +60,6 @@ To promote user engagement the application provides a badge system. The more qui
 3. Master
 4. Ultra knowledge
 5. ALL KNOWING 
-
 <br>
 #### Install Wizard
 The application provides an install wizard to easily deploy it to a web or localhost server.
